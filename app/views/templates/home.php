@@ -45,6 +45,7 @@
 
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
 
+                <?php foreach ($books as $book): ?>
                 <!-- CARD -->
                 <article class="bg-white rounded-b-lg overflow-hidden shadow-sm">
                     <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=900&auto=format&fit=crop"
@@ -59,51 +60,7 @@
                         </span>
                     </div>
                 </article>
-
-                <!-- CARD -->
-                <article class="bg-white rounded-b-lg overflow-hidden shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=900&auto=format&fit=crop"
-                        class="aspect-square w-full object-cover" alt="" />
-
-                    <div class="p-5">
-                        <h3 class="text-lg mb-1">The Kinfolk Table</h3>
-                        <p class="text-sm text-gray-500 mb-4">Nathan Williams</p>
-
-                        <span class="text-xs text-gray-400 italic">
-                            Vendu par : Valentine
-                        </span>
-                    </div>
-                </article>
-
-                <!-- CARD -->
-                <article class="bg-white rounded-b-lg overflow-hidden shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=900&auto=format&fit=crop"
-                        class="aspect-square w-full object-cover" alt="" />
-
-                    <div class="p-5">
-                        <h3 class="text-lg mb-1">Wabi Sabi</h3>
-                        <p class="text-sm text-gray-500 mb-4">Beth Kempton</p>
-
-                        <span class="text-xs text-gray-400 italic">
-                            Vendu par : Alexandre
-                        </span>
-                    </div>
-                </article>
-
-                <!-- CARD -->
-                <article class="bg-white rounded-b-lg overflow-hidden shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1495640388908-05fa85288e61?q=80&w=900&auto=format&fit=crop"
-                        class="aspect-square w-full object-cover" alt="" />
-
-                    <div class="p-5">
-                        <h3 class="text-lg mb-1">Milk & Honey</h3>
-                        <p class="text-sm text-gray-500 mb-4">Rupi Kaur</p>
-
-                        <span class="text-xs text-gray-400 italic">
-                            Vendu par : Hugo1986_42
-                        </span>
-                    </div>
-                </article>
+                <?php endforeach; ?>
 
             </div>
 

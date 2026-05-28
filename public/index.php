@@ -13,12 +13,12 @@ try {
     switch ($action) {
         // Pages accessibles à tous.
         case 'home':
-            $articleController = new ArticleController();
+            $articleController = new MainController();
             $articleController->showHome();
             break;
 
         case 'livres':
-            $articleController = new ArticleController();
+            $articleController = new MainController();
             $articleController->showBooks();
             break;
 

@@ -36,7 +36,7 @@ class View
 
         // On définit les en-têtes de réponse avant envoi
         if (isset($params['errorCode'])) {
-            http_response_code($params['errorCode']);
+            http_response_code((int) $params['errorCode']);
         }
 
         ob_start();

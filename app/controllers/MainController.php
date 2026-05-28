@@ -1,6 +1,6 @@
 <?php 
 
-class ArticleController 
+class MainController 
 {
     /**
      * Affiche la page d'accueil.
@@ -8,11 +8,14 @@ class ArticleController
      */
     public function showHome() : void
     {
-        // $articleManager = new ArticleManager();
-        // $articles = $articleManager->getAllArticles();
+        $bookManager = new BookManager();
+        $books = $bookManager->getBooksForHome();
+        // print_r($books);
 
         $view = new View("Tom Troc");
-        $view->render("home");
+        $view->render("home", [
+            "books" => $books,
+        ]);
     }
 
     /**
@@ -21,8 +24,8 @@ class ArticleController
      */
     public function showBooks() : void
     {
-        // $articleManager = new ArticleManager();
-        // $articles = $articleManager->getAllArticles();
+        // $bookManager = new BookManager();
+        // $books = $bookManager->getAllBooks();
 
         $view = new View("Nos livres à l'échange");
         $view->render("livres");
