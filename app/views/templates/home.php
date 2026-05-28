@@ -48,15 +48,15 @@
                 <?php foreach ($books as $book): ?>
                 <!-- CARD -->
                 <article class="bg-white rounded-b-lg overflow-hidden shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=900&auto=format&fit=crop"
-                        class="aspect-square w-full object-cover" alt="" />
+                    <img src="/assets/images/covers/<?= $book->getPhoto(); ?>"
+                        class="aspect-square w-full object-cover object-top" alt="" />
 
                     <div class="p-5">
-                        <h3 class="text-lg mb-1">Esther</h3>
-                        <p class="text-sm text-gray-500 mb-4">Alabaster</p>
+                        <h3 class="text-lg mb-1"><?= $book->getTitle(); ?></h3>
+                        <p class="text-sm text-gray-500 mb-4"><?= $book->getAuthor(); ?></p>
 
                         <span class="text-xs text-gray-400 italic">
-                            Vendu par : CamilleDu42
+                            Vendu par : <?= "xxx" ?>
                         </span>
                     </div>
                 </article>

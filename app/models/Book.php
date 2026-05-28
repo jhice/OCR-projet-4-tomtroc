@@ -7,9 +7,11 @@
  class Book extends AbstractEntity 
  {
     private string $title = "";
+    private string $author = "";
     private string $comment = "";
     private bool $available;
     private string $photo = "";
+    private string $isbn = "";
 
 
     /**
@@ -36,6 +38,30 @@
         return $this;
     }
 
+    /**
+     * Get the value of author
+     *
+     * @return string
+     */
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set the value of author
+     *
+     * @param string $author
+     *
+     * @return self
+     */
+    public function setAuthor(string $author): self
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+    
     /**
      * Get the value of comment
      *
@@ -104,6 +130,31 @@
     public function setPhoto(string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of isbn
+     *
+     * @return string
+     */
+    public function getIsbn(): string
+    {
+        return $this->isbn;
+    }
+
+    /**
+     * Set the value of isbn
+     *
+     * @param string $isbn
+     *
+     * @return self
+     */
+    public function setIsbn(string $isbn): self
+    {
+        $this->isbn = $isbn;
 
         return $this;
     }

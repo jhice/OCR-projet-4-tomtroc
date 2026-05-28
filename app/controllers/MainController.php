@@ -24,10 +24,12 @@ class MainController
      */
     public function showBooks() : void
     {
-        // $bookManager = new BookManager();
-        // $books = $bookManager->getAllBooks();
+        $bookManager = new BookManager();
+        $books = $bookManager->getAllBooks();
 
         $view = new View("Nos livres à l'échange");
-        $view->render("livres");
+        $view->render("livres", [
+            "books" => $books,
+        ]);
     }
 }

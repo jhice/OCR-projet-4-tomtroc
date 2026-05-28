@@ -29,7 +29,7 @@ class BookManager extends AbstractEntityManager
      */
     public function getAllBooks(): array
     {
-        $sql = "SELECT * FROM books";
+        $sql = "SELECT * FROM books ORDER BY id ASC";
         $result = $this->db->query($sql);
         $books = [];
 
