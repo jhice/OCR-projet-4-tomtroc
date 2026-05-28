@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tom Troc</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&family=Inter:wght@300;400;600&display=swap"
+    rel="stylesheet">
+  <!-- site CSS -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <!-- JavaScript -->
+  <script src="./assets/js/site.js" defer></script> 
+</head>
+
+<body class="bg-[#F5F3EF] text-[#222]">
+
+  <!-- HEADER -->
+  <header class="w-full border-b border-black/5 bg-[#F5F3EF] relative">
+    <div class="max-w-7xl px-5 lg:w-5/6 mx-auto">
+
+      <div class="flex items-center justify-between h-20">
+
+        <!-- LOGO -->
+        <div class="flex items-center gap-4">
+          <div
+            class="w-12 h-12 rounded-md bg-[#00AC66] flex items-center justify-center text-white font-semibold text-xl">
+            TT
+          </div>
+
+          <span class="text-[#00AC66] text-2xl font-display">
+            Tom Troc
+          </span>
+
+          <!-- DESKTOP NAV -->
+          <nav class="hidden lg:flex items-center gap-10 ml-16 mt-2 text-sm">
+            <a href="#" class="hover:text-[#00AC66] transition">Accueil</a>
+            <a href="#" class="hover:text-[#00AC66] transition">Nos livres à l’échange</a>
+          </nav>
+        </div>
+
+        <!-- DESKTOP RIGHT -->
+        <div class="hidden lg:flex items-center gap-10 mt-2 text-sm">
+          <a href="#">Messagerie</a>
+          <a href="#">Mon compte</a>
+          <a href="#">Connexion</a>
+        </div>
+
+        <!-- MOBILE BURGER -->
+        <button id="burger-btn" class="lg:hidden flex flex-col gap-1.5 z-50" aria-label="Ouvrir le menu">
+          <span class="w-6 h-[2px] bg-black transition-all duration-300"></span>
+          <span class="w-6 h-[2px] bg-black transition-all duration-300"></span>
+          <span class="w-6 h-[2px] bg-black transition-all duration-300"></span>
+        </button>
+
+      </div>
+
+      <!-- MOBILE MENU -->
+      <div id="mobile-menu"
+        class="lg:hidden absolute top-full left-0 w-full bg-[#F5F3EF] border-t border-black/5 hidden shadow-sm">
+
+        <nav class="flex flex-col px-5 py-6 text-base">
+
+          <a href="#" class="pb-4 border-b border-black/5">
+            Accueil
+          </a>
+
+          <a href="#" class="py-4 border-b border-black/5">
+            Nos livres à l’échange
+          </a>
+
+          <a href="#" class="py-4 border-b border-black/5">
+            Messagerie
+          </a>
+
+          <a href="#" class="py-4 border-b border-black/5">
+            Mon compte
+          </a>
+
+          <a href="#" class="pt-4">
+            Connexion
+          </a>
+
+        </nav>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- PAGE -->
+  <main class="py-10 lg:py-16">
+
+    <div class="container-custom mx-auto px-4 lg:px-8">
+
+      <!-- TITLE -->
+      <div class="mb-8 lg:mb-12">
+
+        <h1 class="font-display text-3xl lg:text-4xl leading-none mb-8">
+          Nos livres à l’échange
+        </h1>
+
+        <!-- SEARCH -->
+        <!-- <div class="relative max-w-xl"> -->
+        <div class="relative">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+
+          <input
+            type="text"
+            placeholder="Rechercher un livre"
+            class="w-full h-14 rounded-xl border border-black/5 bg-white pl-12 pr-4 outline-none focus:ring-2 focus:ring-[#00AC66]/20"
+          />
+
+        </div>
+
+      </div>
+
+      <!-- BOOKS GRID -->
+      <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
+
+        <!-- CARD -->
+        <article class="bg-white rounded-b-lg overflow-hidden shadow-sm">
+
+          <img
+            src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=900&auto=format&fit=crop"
+            alt=""
+            class="aspect-square w-full object-cover"
+          />
+
+          <div class="p-4 lg:p-5">
+
+            <h2 class="text-lg mb-1">
+              Esther
+            </h2>
+
+            <p class="text-gray-400 text-sm mb-4">
+              Alabaster
+            </p>
+
+            <p class="text-[11px] italic text-gray-300">
+              Vendu par : CeriseDuNil
+            </p>
+
+          </div>
+
+        </article>
+
+        <!-- CARD -->
+        <article class="bg-white rounded-b-lg overflow-hidden shadow-sm">
+
+          <img
+            src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=900&auto=format&fit=crop"
+            alt=""
+            class="aspect-square w-full object-cover"
+          />
+
+          <div class="p-4 lg:p-5">
+
+            <h2 class="text-lg mb-1">
+              The Kinfolk Table
+            </h2>
+
+            <p class="text-gray-400 text-sm mb-4">
+              Nathan Williams
+            </p>
+
+            <p class="text-[11px] italic text-gray-300">
+              Vendu par : Nathalie
+            </p>
+
+          </div>
+
+        </article>
+
+        <!-- CARD -->
+        <article class="bg-white rounded-b-lg overflow-hidden shadow-sm">
+
+          <img
+            src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=900&auto=format&fit=crop"
+            alt=""
+            class="aspect-square w-full object-cover"
+          />
+
+          <div class="p-4 lg:p-5">
+
+            <h2 class="text-lg mb-1">
+              Wabi Sabi
+            </h2>
+
+            <p class="text-gray-400 text-sm mb-4">
+              Beth Kempton
+            </p>
+
+            <p class="text-[11px] italic text-gray-300">
+              Vendu par : Alectecture
+            </p>
+
+          </div>
+
+        </article>
+
+        <!-- CARD -->
+        <article class="bg-white rounded-b-lg overflow-hidden shadow-sm">
+
+          <img
+            src="https://images.unsplash.com/photo-1495640388908-05fa85288e61?q=80&w=900&auto=format&fit=crop"
+            alt=""
+            class="aspect-square w-full object-cover"
+          />
+
+          <div class="p-4 lg:p-5">
+
+            <h2 class="text-lg mb-1">
+              Milk & honey
+            </h2>
+
+            <p class="text-gray-400 text-sm mb-4">
+              Rupi Kaur
+            </p>
+
+            <p class="text-[11px] italic text-gray-300">
+              Vendu par : Hugo1990_12
+            </p>
+
+          </div>
+
+        </article>
+
+        <!-- CARD -->
+        <article class="bg-white rounded-b-lg overflow-hidden shadow-sm relative">
+
+          <span class="absolute top-3 right-3 z-10 bg-[#F26B4A] text-white text-[10px] px-2 py-1 rounded-full">
+            non dispo.
+          </span>
+
+          <img
+            src="https://images.unsplash.com/photo-1511108690759-009324a90311?q=80&w=900&auto=format&fit=crop"
+            alt=""
+            class="aspect-square w-full object-cover"
+          />
+
+          <div class="p-4 lg:p-5">
+
+            <h2 class="text-lg mb-1">
+              Delight!
+            </h2>
+
+            <p class="text-gray-400 text-sm mb-4">
+              Justin Rossow
+            </p>
+
+            <p class="text-[11px] italic text-gray-300">
+              Vendu par : Juju1432
+            </p>
+
+          </div>
+
+        </article>
+
+        <!-- CARD -->
+        <article class="bg-white rounded-b-lg overflow-hidden shadow-sm">
+
+          <img
+            src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=900&auto=format&fit=crop"
+            alt=""
+            class="aspect-square w-full object-cover"
+          />
+
+          <div class="p-4 lg:p-5">
+
+            <h2 class="text-lg mb-1">
+              Milwaukee Mission
+            </h2>
+
+            <p class="text-gray-400 text-sm mb-4">
+              Elder Cooper Low
+            </p>
+
+            <p class="text-[11px] italic text-gray-300">
+              Vendu par : Christiane5014
+            </p>
+
+          </div>
+
+        </article>
+
+        <!-- CARD -->
+        <article class="bg-white rounded-b-lg overflow-hidden shadow-sm">
+
+          <img
+            src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?q=80&w=900&auto=format&fit=crop"
+            alt=""
+            class="aspect-square w-full object-cover"
+          />
+
+          <div class="p-4 lg:p-5">
+
+            <h2 class="text-lg mb-1">
+              Minimalist Graphics
+            </h2>
+
+            <p class="text-gray-400 text-sm mb-4">
+              Julia Schonlau
+            </p>
+
+            <p class="text-[11px] italic text-gray-300">
+              Vendu par : Homelecture
+            </p>
+
+          </div>
+
+        </article>
+
+        <!-- CARD -->
+        <article class="bg-white rounded-b-lg overflow-hidden shadow-sm">
+
+          <img
+            src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=900&auto=format&fit=crop"
+            alt=""
+            class="aspect-square w-full object-cover"
+          />
+
+          <div class="p-4 lg:p-5">
+
+            <h2 class="text-lg mb-1">
+              Hygge
+            </h2>
+
+            <p class="text-gray-400 text-sm mb-4">
+              Meik Wiking
+            </p>
+
+            <p class="text-[11px] italic text-gray-300">
+              Vendu par : Hugo1990_12
+            </p>
+
+          </div>
+
+        </article>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-black/5 py-5">
+    <div class="container-custom mx-auto px-5 lg:px-8">
+
+      <div class="">
+
+        <div class="flex items-center flex-col gap-5 md:flex-row md:gap-10 md:justify-end
+         text-sm text-gray-500">
+          <a href="#">Politique de confidentialité</a>
+          <a href="#">Mentions légales</a>
+          <a href="#">Tom Troc©</a>
+          <div class="text-[#00AC66] font-semibold text-xl">
+            TT
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+
+</html>
