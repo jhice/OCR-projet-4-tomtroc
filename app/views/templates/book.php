@@ -54,7 +54,7 @@
                     Propriétaire
                 </h2>
 
-                <div class="inline-flex items-center gap-3 bg-white rounded-full p-3">
+                <div class="inline-flex items-center gap-3 bg-white rounded-full p-3 pe-5">
 
                     <img
                         src="https://api.dicebear.com/10.x/notionists/svg?backgroundColor=ffbe47&backgroundColorFill=solid&seed=<?= $book->getUser()->getAvatar(); ?>"
@@ -62,7 +62,7 @@
                         alt="">
 
                     <span class="text-md text-[#333]">
-                        <?= $book->getUser()->getNickname(); ?>
+                        <a class="underline" href="?action=user&id=<?= $book->getUser()->getId(); ?>"><?= $book->getUser()->getNickname(); ?></a>
                     </span>
 
                 </div>

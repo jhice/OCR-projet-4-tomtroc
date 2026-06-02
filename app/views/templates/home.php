@@ -18,7 +18,7 @@
                     </p>
 
                     <a href="/?action=livres"
-                        class="w-full lg:w-auto bg-[#00AC66] hover:bg-[#00995b] transition text-white px-10 py-4 rounded-lg font-medium">
+                        class="block md:inline text-center w-full lg:w-auto bg-[#00AC66] hover:bg-[#00995b] transition text-white px-10 py-4 rounded-lg font-medium">
                         Découvrir
                     </a>
 
@@ -46,27 +46,33 @@
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
 
                 <?php foreach ($books as $book): ?>
-                <!-- CARD -->
-                <article class="bg-white rounded-b-lg overflow-hidden shadow-sm">
-                    <img src="/assets/images/covers/<?= $book->getPhoto(); ?>"
-                        class="aspect-square w-full object-cover object-top" alt="" />
+                    <!-- CARD -->
+                    <article class="bg-white rounded-b-lg overflow-hidden shadow-sm relative">
+                        <?php if (!$book->getAvailable()): ?>
+                            <span class="absolute top-3 right-3 z-10 bg-[#F26B4A] text-white text-[10px] px-2 py-1 rounded-full">
+                                non disponible
+                            </span>
+                        <?php endif; ?>
 
-                    <div class="p-5">
-                        <h3 class="text-lg mb-1"><a class="underline" href="/?action=livre&id=<?= $book->getId(); ?>"><?= $book->getTitle(); ?></a></h3>
-                        <p class="text-sm text-gray-500 mb-4"><?= $book->getAuthor(); ?></p>
+                        <img src="/assets/images/covers/<?= $book->getPhoto(); ?>"
+                            class="aspect-square w-full object-cover object-top" alt="" />
 
-                        <span class="text-xs text-gray-400 italic">
-                            Vendu par : <?= $book->getUser()->getNickname(); ?>
-                        </span>
-                    </div>
-                </article>
+                        <div class="p-5">
+                            <h3 class="text-lg mb-1"><a class="underline" href="/?action=livre&id=<?= $book->getId(); ?>"><?= $book->getTitle(); ?></a></h3>
+                            <p class="text-sm text-gray-500 mb-4"><?= $book->getAuthor(); ?></p>
+
+                            <span class="text-xs text-gray-400 italic">
+                                Vendu par : <a class="underline" href="?action=user&id=<?= $book->getUser()->getId(); ?>"><?= $book->getUser()->getNickname(); ?></a>
+                            </span>
+                        </div>
+                    </article>
                 <?php endforeach; ?>
 
             </div>
 
             <div class="flex justify-center mt-14">
                 <a href="/?action=livres"
-                    class="w-full lg:w-auto bg-[#00AC66] hover:bg-[#00995b] transition text-white px-10 py-4 rounded-lg font-medium">
+                    class="block md:inline text-center w-full lg:w-auto bg-[#00AC66] hover:bg-[#00995b] transition text-white px-10 py-4 rounded-lg font-medium">
                     Voir tous les livres
                 </a>
             </div>
@@ -113,7 +119,7 @@
 
             <div class="flex justify-center mt-14">
                 <a href="/?action=livres"
-                    class="w-full lg:w-auto border border-[#00AC66] text-[#00AC66] hover:bg-[#00AC66] hover:text-white transition px-10 py-4 rounded-lg font-medium">
+                    class="block md:inline text-center w-full lg:w-auto border border-[#00AC66] text-[#00AC66] hover:bg-[#00AC66] hover:text-white transition px-10 py-4 rounded-lg font-medium">
                     Voir tous les livres
                 </a>
             </div>

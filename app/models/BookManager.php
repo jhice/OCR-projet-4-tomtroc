@@ -67,6 +67,27 @@ class BookManager extends AbstractEntityManager
     }
 
     /**
+     * Récupère tous les livres d'un utilisateur donné
+     * @return array : un tableau d'objets Book.
+     */
+    public function getAllBooksFromUser(User $user): array
+    {
+        $sql = "SELECT * FROM books WHERE user_id = :id ORDER BY id ASC";
+        $result = $this->db->query($sql, ['id' => $user->getId()]);
+        $books = [];
+
+        $userManager = new UserManager();
+
+        while ($book = $result->fetch()) {
+            $newBook = new Book($book);
+            // push to list
+            $books[] = $newBook;
+        }
+
+        return $books;
+    }
+
+    /**
      * Récupère un book par son id.
      * @param int $id : l'id du book.
      * @return Book|null : un objet Book ou null si le book n'existe pas.

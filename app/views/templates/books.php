@@ -41,7 +41,13 @@
 
               <?php foreach ($books as $book): ?>
                   <!-- CARD -->
-                  <article class="bg-white rounded-b-lg overflow-hidden shadow-sm">
+                  <article class="bg-white rounded-b-lg overflow-hidden shadow-sm relative">
+
+                      <?php if (!$book->getAvailable()): ?>
+                          <span class="absolute top-3 right-3 z-10 bg-[#F26B4A] text-white text-[10px] px-2 py-1 rounded-full">
+                              non disponible
+                          </span>
+                      <?php endif; ?>
 
                       <img
                           src="/assets/images/covers/<?= $book->getPhoto(); ?>"
@@ -59,7 +65,7 @@
                           </p>
 
                           <p class="text-[11px] italic text-gray-300">
-                              Vendu par : <?= $book->getUser()->getNickname(); ?>
+                              Vendu par : <a class="underline" href="?action=user&id=<?= $book->getUser()->getId(); ?>"><?= $book->getUser()->getNickname(); ?></a>
                           </p>
 
                       </div>

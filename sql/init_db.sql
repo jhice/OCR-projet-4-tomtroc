@@ -64,7 +64,7 @@ INSERT INTO books (title, comment, author, available, photo, user_id) VALUES
     'Nathan Williams',
     TRUE,
     'the-kinfolk-table.jpg',
-    2
+    3
 ),
 (
     'Wabi Sabi',
@@ -72,7 +72,7 @@ INSERT INTO books (title, comment, author, available, photo, user_id) VALUES
     'Beth Kempton',
     TRUE,
     'wabi-sabi.jpg',
-    2
+    4
 ),
 (
     'Milk & Honey',
@@ -80,7 +80,7 @@ INSERT INTO books (title, comment, author, available, photo, user_id) VALUES
     'Rupi Kaur',
     TRUE,
     'milk-and-honey.jpg',
-    3
+    1
 ),
 (
     'Delight!',
@@ -88,7 +88,7 @@ INSERT INTO books (title, comment, author, available, photo, user_id) VALUES
     'Justin Rossow',
     FALSE,
     'delight.jpg',
-    4
+    2
 ),
 (
     'Milwaukee Mission',
@@ -96,7 +96,7 @@ INSERT INTO books (title, comment, author, available, photo, user_id) VALUES
     'Elder Cooper Low',
     TRUE,
     'milwaukee-mission.jpg',
-    5
+    10
 ),
 (
     'Minimalist Graphics',
@@ -104,7 +104,7 @@ INSERT INTO books (title, comment, author, available, photo, user_id) VALUES
     'Julia Schonlau',
     TRUE,
     'minimalist-graphics.webp',
-    6
+    7
 ),
 (
     'Hygge',
@@ -120,7 +120,7 @@ INSERT INTO books (title, comment, author, available, photo, user_id) VALUES
     'Matt Ridley',
     TRUE,
     'innovation.webp',
-    7
+    1
 ),
 (
     'Psalms',
@@ -144,7 +144,7 @@ INSERT INTO books (title, comment, author, available, photo, user_id) VALUES
     'Rupi Kaur',
     TRUE,
     'the-book-of-hope.jpg',
-    10
+    1
 ),
 (
     'The Subtle Art Of Not Giving A F*ck',
@@ -160,7 +160,7 @@ INSERT INTO books (title, comment, author, available, photo, user_id) VALUES
     'C.S. Lewis',
     FALSE,
     'narnia.jpg',
-    12
+    2
 ),
 (
     'Company Of One',
@@ -168,7 +168,7 @@ INSERT INTO books (title, comment, author, available, photo, user_id) VALUES
     'Paul Jarvis',
     TRUE,
     'company-of-one.jpg',
-    13
+    2
 ),
 (
     'The Two Towers',

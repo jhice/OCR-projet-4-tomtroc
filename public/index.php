@@ -27,6 +27,11 @@ try {
             $articleController->showBook();
             break;
 
+        case 'user':
+            $userController = new UserController();
+            $userController->showUser();
+            break;
+            
         default:
             throw new Exception("La page demandée n'existe pas.", 404);
     }
