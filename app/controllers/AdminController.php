@@ -40,6 +40,54 @@ class AdminController
     }
 
     /**
+     * Affichage du formulaire d'inscription.
+     * @return void
+     */
+    public function displayRegisterForm(): void
+    {
+        $view = new View("Inscription");
+        $view->render("user/registration_form");
+    }
+    
+    /**
+     * Inscription de l'utilisateur.
+     * @return void
+     */
+    public function registerUser(): void
+    {
+        // On récupère les données du formulaire.
+        $login = Utils::request("login");
+        $password = Utils::request("password");
+
+        // On vérifie que les données sont valides.
+        if (empty($login) || empty($password)) {
+            throw new Exception("Tous les champs sont obligatoires.");
+        }
+
+        // On vérifie que l'utilisateur n'existe pas déjà
+        $userManager = new UserManager();
+        $user = $userManager->getUserByLogin($login);
+        if ($user) {
+            throw new Exception("Ce nom d'utilisateur est déjà utilisé.");
+        }
+
+        // On hache le mot de passe avec l'algorithme bcrypt, pour stockage sécurisé en BDD
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+        // On enregistre l'utilisateur
+        $user = new User([
+            "login" => $login,
+            "password" => $hashedPassword,
+            "nickname" => $login,
+            "avatar" => "",
+        ]);
+        $userManager->addUser($user);
+
+        // On redirige vers la page d'administration.
+        Utils::redirect("login");
+    }
+    
+    /**
      * Affichage du formulaire de connexion.
      * @return void
      */
@@ -93,6 +141,7 @@ class AdminController
     {
         // On déconnecte l'utilisateur.
         unset($_SESSION['user']);
+        unset($_SESSION['idUser']);
 
         // On redirige vers la page d'accueil.
         Utils::redirect("home");

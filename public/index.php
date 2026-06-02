@@ -36,6 +36,16 @@ try {
 
         // user
 
+        case 'register':
+            $adminController = new AdminController();
+            $adminController->displayRegisterForm();
+            break;
+            
+        case 'register_post':
+            $adminController = new AdminController();
+            $adminController->registerUser();
+            break;
+
         case 'login':
             $adminController = new AdminController();
             $adminController->displayConnectionForm();

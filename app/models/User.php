@@ -8,7 +8,7 @@
     private string $login = "";
     private string $password = "";
     private string $nickname = "";
-    private string $avatar = "";
+    private ?string $avatar = "";
 
     /**
      * Get the value of login
@@ -87,7 +87,7 @@
      *
      * @return string
      */
-    public function getAvatar(): string
+    public function getAvatar(): ?string
     {
         return $this->avatar;
     }
@@ -99,7 +99,7 @@
      *
      * @return self
      */
-    public function setAvatar(string $avatar): self
+    public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
 

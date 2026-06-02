@@ -58,7 +58,7 @@ class UserManager extends AbstractEntityManager
 
     /**
      * Ajoute ou modifie un user.
-     * On sait si l'user est un nouvel user car son id sera -1.
+     * On sait si l'user est un nouveau user car son id sera -1.
      * @param User $user : l'user à ajouter ou modifier.
      * @return void
      */
@@ -73,31 +73,31 @@ class UserManager extends AbstractEntityManager
 
     /**
      * Ajoute un user.
-     * @param User $user : l'user à ajouter.
+     * @param User $user : le user à ajouter.
      * @return void
      */
     public function addUser(User $user): void
     {
-        $sql = "INSERT INTO users (id_user, title, content, date_creation) VALUES (:id_user, :title, :content, NOW())";
+        $sql = "INSERT INTO users (login, password, nickname) VALUES (:login, :password, :nickname)";
         $this->db->query($sql, [
-            'id_user' => $user->getIdUser(),
-            'title' => $user->getTitle(),
-            'content' => $user->getContent()
+            'login' => $user->getLogin(),
+            'password' => $user->getPassword(),
+            'nickname' => $user->getNickname(),
         ]);
     }
 
     /**
      * Modifie un user.
-     * @param User $user : l'user à modifier.
+     * @param User $user : le user à modifier.
      * @return void
      */
     public function updateUser(User $user): void
     {
-        $sql = "UPDATE users SET title = :title, content = :content, date_update = NOW() WHERE id = :id";
+        $sql = "UPDATE users SET title = :title, content = :content, WHERE id = :id";
         $this->db->query($sql, [
-            'title' => $user->getTitle(),
-            'content' => $user->getContent(),
-            'id' => $user->getId()
+            'login' => $user->getLogin(),
+            'password' => $user->getPassword(),
+            'nickname' => $user->getNickname(),
         ]);
     }
 

@@ -63,6 +63,7 @@
                     <a href="/?action=logout">Déconnexion</a>
                     <?php else : ?>
                     <a href="/?action=login">Connexion</a>
+                    <a href="/?action=register">Inscription</a>
                     <?php endif; ?>
                 </div>
 
