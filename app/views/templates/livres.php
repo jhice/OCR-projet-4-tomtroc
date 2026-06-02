@@ -51,7 +51,7 @@
                       <div class="p-4 lg:p-5">
 
                           <h2 class="text-lg mb-1">
-                              <?= $book->getTitle(); ?>
+                              <a class="underline" href="/?action=livre&id=<?= $book->getId(); ?>"><?= $book->getTitle(); ?></a>
                           </h2>
 
                           <p class="text-gray-400 text-sm mb-4">

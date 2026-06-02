@@ -1,12 +1,12 @@
-<?php 
+<?php
 
-class MainController 
+class MainController
 {
     /**
      * Affiche la page d'accueil.
      * @return void
      */
-    public function showHome() : void
+    public function showHome(): void
     {
         $bookManager = new BookManager();
         $books = $bookManager->getBooksForHome();
@@ -22,7 +22,7 @@ class MainController
      * Affiche "nos livres à l'échange".
      * @return void
      */
-    public function showBooks() : void
+    public function showBooks(): void
     {
         $bookManager = new BookManager();
         $books = $bookManager->getAllBooks();
@@ -30,6 +30,28 @@ class MainController
         $view = new View("Nos livres à l'échange");
         $view->render("livres", [
             "books" => $books,
+        ]);
+    }
+
+    /**
+     * Affiche le détail d'un livre.
+     * @return void
+     */
+    public function showBook(): void
+    {
+        // Récupération de l'id du livre demandé.
+        $id = Utils::request("id", -1);
+
+        $bookManager = new BookManager();
+        $book = $bookManager->getBookById($id);
+
+        if (!$book) {
+            throw new Exception("Le ivre demandé n'existe pas.", 404);
+        }
+
+        $view = new View($book->getTitle());
+        $view->render("livre", [
+            'book' => $book,
         ]);
     }
 }

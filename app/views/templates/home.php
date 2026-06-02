@@ -52,7 +52,7 @@
                         class="aspect-square w-full object-cover object-top" alt="" />
 
                     <div class="p-5">
-                        <h3 class="text-lg mb-1"><?= $book->getTitle(); ?></h3>
+                        <h3 class="text-lg mb-1"><a class="underline" href="/?action=livre&id=<?= $book->getId(); ?>"><?= $book->getTitle(); ?></a></h3>
                         <p class="text-sm text-gray-500 mb-4"><?= $book->getAuthor(); ?></p>
 
                         <span class="text-xs text-gray-400 italic">

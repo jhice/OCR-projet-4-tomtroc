@@ -42,8 +42,8 @@ class BookManager extends AbstractEntityManager
 
     /**
      * Récupère un book par son id.
-     * @param int $id : l'id de l'book.
-     * @return Book|null : un objet Book ou null si l'book n'existe pas.
+     * @param int $id : l'id du book.
+     * @return Book|null : un objet Book ou null si le book n'existe pas.
      */
     public function getBookById(int $id): ?Book
     {

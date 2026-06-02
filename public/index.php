@@ -22,6 +22,11 @@ try {
             $articleController->showBooks();
             break;
 
+        case 'livre':
+            $articleController = new MainController();
+            $articleController->showBook();
+            break;
+
         default:
             throw new Exception("La page demandée n'existe pas.", 404);
     }
