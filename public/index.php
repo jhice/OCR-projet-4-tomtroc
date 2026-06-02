@@ -11,7 +11,9 @@ $action = Utils::request('action', 'home');
 try {
     // Pour chaque action, on appelle le bon contrôleur et la bonne méthode.
     switch ($action) {
-        // Pages accessibles à tous.
+
+        // pages publiques
+
         case 'home':
             $articleController = new MainController();
             $articleController->showHome();
@@ -31,12 +33,32 @@ try {
             $userController = new UserController();
             $userController->showUser();
             break;
-            
+
+        // user
+
+        case 'login':
+            $adminController = new AdminController();
+            $adminController->displayConnectionForm();
+            break;
+
+        case 'connect':
+            $adminController = new AdminController();
+            $adminController->connectUser();
+            break;
+
+        case 'logout':
+            $adminController = new AdminController();
+            $adminController->disconnectUser();
+            break;
+
         default:
             throw new Exception("La page demandée n'existe pas.", 404);
     }
 } catch (Exception $e) {
     // En cas d'erreur, on affiche la page d'erreur.
     $errorView = new View('Erreur');
-    $errorView->render('errorPage', ['errorMessage' => $e->getMessage(), 'errorCode' => $e->getCode()]);
+    $errorView->render('error_page', [
+        'errorMessage' => $e->getMessage(),
+        'errorCode' => $e->getCode()
+    ]);
 }

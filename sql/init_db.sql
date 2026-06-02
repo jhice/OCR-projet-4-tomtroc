@@ -15,9 +15,9 @@ CREATE TABLE users (
 
 INSERT INTO users (login, password, nickname, avatar) VALUES
 ('camilleclublit',  '$2y$demo$001', 'CamilleClubLit',  'camille.jpg'),
-('alexlecture',     '$2y$demo$002', 'Alexlecture',     'alex.jpg'),
+('alexlecture',     '$2y$10$si2KOtOxbRUdzU76j1JMwunFe4wiQngQ/hVRvO2F.twNDpG8xtu7O', 'Alexlecture',     'alex.jpg'),
 ('hugo1990_12',     '$2y$demo$003', 'Hugo1990.12',     'hugo.jpg'),
-('juju1432',        '$2y$demo$004', 'Juju1432',        'juju.jpg'),
+('juju1432',        '$2y$10$KGjiwO9BKJ.r9Q5lerL.p.Nuc2R95dR9kEDwwAAEbCPQ5kZWUsqeu', 'Juju1432',        'juju.jpg'),
 ('christiane75014', '$2y$demo$005', 'Christiane75014', 'christiane.jpg'),
 ('hamzalecture',    '$2y$demo$006', 'Hamzalecture',    'hamza.jpg'),
 ('louben50',        '$2y$demo$007', 'LouBen50',        'louben.jpg'),

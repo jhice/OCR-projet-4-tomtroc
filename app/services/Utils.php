@@ -7,37 +7,6 @@
  */
 class Utils
 {
-
-    /**
-     * Convertit une date vers le format de type "Samedi 15 juillet 2023" en francais.
-     * @param DateTime $date : la date à convertir.
-     * @return string : la date convertie.
-     */
-    public static function convertDateToFrenchFormat(DateTime $date): string
-    {
-        // Attention, s'il y a un soucis lié à IntlDateFormatter c'est qu'il faut
-        // activer l'extention intl_date_formater (ou intl) au niveau du serveur apache. 
-        // Ca peut se faire depuis php.ini ou parfois directement depuis votre utilitaire (wamp/mamp/xamp)
-        $dateFormatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::FULL);
-        $dateFormatter->setPattern('EEEE d MMMM Y');
-        return $dateFormatter->format($date);
-    }
-
-    /**
-     * Convertit une date vers le format de type "15/07/2023" en francais.
-     * @param DateTime $date : la date à convertir.
-     * @return string : la date convertie.
-     */
-    public static function convertDateToShortFrenchFormat(DateTime $date): string
-    {
-        // Attention, s'il y a un soucis lié à IntlDateFormatter c'est qu'il faut
-        // activer l'extention intl_date_formater (ou intl) au niveau du serveur apache. 
-        // Ca peut se faire depuis php.ini ou parfois directement depuis votre utilitaire (wamp/mamp/xamp)
-        $dateFormatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::FULL);
-        $dateFormatter->setPattern('dd/MM/Y');
-        return $dateFormatter->format($date);
-    }
-
     /**
      * Redirige vers une URL.
      * @param string $action : l'action que l'on veut faire (correspond aux actions dans le routeur).

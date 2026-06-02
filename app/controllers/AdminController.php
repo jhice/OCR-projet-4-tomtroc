@@ -46,7 +46,7 @@ class AdminController
     public function displayConnectionForm(): void
     {
         $view = new View("Connexion");
-        $view->render("connectionForm");
+        $view->render("user/login_form");
     }
 
     /**
@@ -61,20 +61,20 @@ class AdminController
 
         // On vérifie que les données sont valides.
         if (empty($login) || empty($password)) {
-            throw new Exception("Tous les champs sont obligatoires. 1");
+            throw new Exception("Tous les champs sont obligatoires.");
         }
 
         // On vérifie que l'utilisateur existe.
         $userManager = new UserManager();
         $user = $userManager->getUserByLogin($login);
         if (!$user) {
-            throw new Exception("L'utilisateur demandé n'existe pas.");
+            throw new Exception("Nom d'utilisateur ou mot de passe erroné.");
         }
 
         // On vérifie que le mot de passe est correct.
         if (!password_verify($password, $user->getPassword())) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            throw new Exception("Le mot de passe est incorrect : $hash");
+            throw new Exception("Nom d'utilisateur ou mot de passe erroné.");
         }
 
         // On connecte l'utilisateur.
@@ -82,7 +82,7 @@ class AdminController
         $_SESSION['idUser'] = $user->getId();
 
         // On redirige vers la page d'administration.
-        Utils::redirect("admin");
+        Utils::redirect("user", ['id' => $user->getId()]);
     }
 
     /**

@@ -57,9 +57,13 @@
 
                 <!-- DESKTOP RIGHT -->
                 <div class="hidden lg:flex items-center gap-10 mt-2 text-sm">
+                    <?php if (isset($_SESSION['user'])): ?>
                     <a href="#">Messagerie</a>
-                    <a href="#">Mon compte</a>
-                    <a href="#">Connexion</a>
+                    <a href="/?action=user&id=<?= $_SESSION["idUser"]; ?>">Mon compte</a>
+                    <a href="/?action=logout">Déconnexion</a>
+                    <?php else : ?>
+                    <a href="/?action=login">Connexion</a>
+                    <?php endif; ?>
                 </div>
 
                 <!-- MOBILE BURGER -->
@@ -77,11 +81,11 @@
 
                 <nav class="flex flex-col px-5 py-6 text-base">
 
-                    <a href="#" class="pb-4 border-b border-black/5">
+                    <a href="./" class="pb-4 border-b border-black/5">
                         Accueil
                     </a>
 
-                    <a href="#" class="py-4 border-b border-black/5">
+                    <a href="./?action=livres" class="py-4 border-b border-black/5">
                         Nos livres à l’échange
                     </a>
 
@@ -93,7 +97,7 @@
                         Mon compte
                     </a>
 
-                    <a href="#" class="pt-4">
+                    <a href="./?action=login" class="pt-4">
                         Connexion
                     </a>
 

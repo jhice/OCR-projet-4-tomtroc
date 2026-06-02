@@ -19,11 +19,11 @@
                         ¯\_(ツ)_/¯<br><?= $errorMessage ?>
                     </h1>
 
-                    <p class="text-[#555] leading-relaxed mb-8">
+                    <!-- <p class="text-[#555] leading-relaxed mb-8">
                         Nous sommes informés du problème et mettons tout en oeuvre pour y remédier.
                     </p>
 
-                    <a href="index.php?action=home">Retour à la page d'accueil</a>
+                    <a href="index.php?action=home">Retour à la page d'accueil</a> -->
 
                 </div>
             </div>
