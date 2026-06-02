@@ -57,12 +57,12 @@
                 <div class="inline-flex items-center gap-3 bg-white rounded-full p-3">
 
                     <img
-                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300&auto=format&fit=crop"
+                        src="https://api.dicebear.com/10.x/notionists/svg?backgroundColor=ffbe47&backgroundColorFill=solid&seed=<?= $book->getUser()->getAvatar(); ?>"
                         class="w-12 h-12 rounded-full object-cover"
                         alt="">
 
                     <span class="text-md text-[#333]">
-                        Alexlecture
+                        <?= $book->getUser()->getNickname(); ?>
                     </span>
 
                 </div>

@@ -1,8 +1,7 @@
 <?php
 
 /**
- * Entité Book, un article est défini par les champs
- * id, id_user, title, content, date_creation, date_update
+ * Entité Book (livre)
  */
  class Book extends AbstractEntity 
  {
@@ -11,8 +10,9 @@
     private string $comment = "";
     private bool $available;
     private string $photo = "";
-    private string $isbn = "";
-
+    private int $userId;
+    // permet d'associer l'objet directement (voir BookManager)
+    private User $user;
 
     /**
      * Get the value of title
@@ -134,28 +134,51 @@
         return $this;
     }
 
-
     /**
-     * Get the value of isbn
+     * Get the value of userId
      *
-     * @return string
+     * @return int
      */
-    public function getIsbn(): string
+    public function getUserId(): ?int
     {
-        return $this->isbn;
+        return $this->userId;
     }
 
     /**
-     * Set the value of isbn
+     * Set the value of userId
      *
-     * @param string $isbn
+     * @param int $userId
      *
      * @return self
      */
-    public function setIsbn(string $isbn): self
+    public function setUserId(?int $userId): self
     {
-        $this->isbn = $isbn;
+        $this->userId = $userId;
 
         return $this;
     }
- }
+
+    /**
+     * Get the value of user
+     *
+     * @return User
+     */
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set the value of user
+     *
+     * @param User $user
+     *
+     * @return self
+     */
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+}

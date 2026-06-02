@@ -16,13 +16,27 @@ class BookManager extends AbstractEntityManager
         $result = $this->db->query($sql);
         $books = [];
 
+        $userManager = new UserManager();
+
         while ($book = $result->fetch()) {
-            $books[] = new Book($book);
+            $newBook = new Book($book);
+            // association user ?
+            if ($newBook->getUserId()) {
+                $user = $userManager->getUserById($newBook->getUserId());
+                if ($user) {
+                    // permet d'associer l'objet directement
+                    $newBook->setUser($user);
+                }
+            }
+            // push to list
+            $books[] = $newBook;
         }
+
+        // print_r($books);
 
         return $books;
     }
-    
+
     /**
      * Récupère tous les livres.
      * @return array : un tableau d'objets Book.
@@ -33,8 +47,20 @@ class BookManager extends AbstractEntityManager
         $result = $this->db->query($sql);
         $books = [];
 
+        $userManager = new UserManager();
+
         while ($book = $result->fetch()) {
-            $books[] = new Book($book);
+            $newBook = new Book($book);
+            // association user ?
+            if ($newBook->getUserId()) {
+                $user = $userManager->getUserById($newBook->getUserId());
+                if ($user) {
+                    // permet d'associer l'objet directement
+                    $newBook->setUser($user);
+                }
+            }
+            // push to list
+            $books[] = $newBook;
         }
 
         return $books;
@@ -51,7 +77,17 @@ class BookManager extends AbstractEntityManager
         $result = $this->db->query($sql, ['id' => $id]);
         $book = $result->fetch();
         if ($book) {
-            return new Book($book);
+            $newBook = new Book($book);
+            $userManager = new UserManager();
+            // association user ?
+            if ($newBook->getUserId()) {
+                $user = $userManager->getUserById($newBook->getUserId());
+                if ($user) {
+                    // permet d'associer l'objet directement
+                    $newBook->setUser($user);
+                }
+            }
+            return $newBook;
         }
         return null;
     }
@@ -111,5 +147,4 @@ class BookManager extends AbstractEntityManager
         $sql = "DELETE FROM books WHERE id = :id";
         $this->db->query($sql, ['id' => $id]);
     }
-    
 }

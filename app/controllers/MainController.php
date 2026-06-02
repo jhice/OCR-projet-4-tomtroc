@@ -28,7 +28,7 @@ class MainController
         $books = $bookManager->getAllBooks();
 
         $view = new View("Nos livres à l'échange");
-        $view->render("livres", [
+        $view->render("books", [
             "books" => $books,
         ]);
     }
@@ -50,7 +50,7 @@ class MainController
         }
 
         $view = new View($book->getTitle());
-        $view->render("livre", [
+        $view->render("book", [
             'book' => $book,
         ]);
     }

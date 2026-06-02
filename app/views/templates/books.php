@@ -59,7 +59,7 @@
                           </p>
 
                           <p class="text-[11px] italic text-gray-300">
-                              Vendu par : <?= "xxx"; ?>
+                              Vendu par : <?= $book->getUser()->getNickname(); ?>
                           </p>
 
                       </div>

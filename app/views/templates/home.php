@@ -17,10 +17,10 @@
                         Nous croyons en la magie du partage de connaissances et d'histoires à travers les livres.
                     </p>
 
-                    <button
+                    <a href="/?action=livres"
                         class="w-full lg:w-auto bg-[#00AC66] hover:bg-[#00995b] transition text-white px-10 py-4 rounded-lg font-medium">
                         Découvrir
-                    </button>
+                    </a>
 
                 </div>
 
@@ -56,7 +56,7 @@
                         <p class="text-sm text-gray-500 mb-4"><?= $book->getAuthor(); ?></p>
 
                         <span class="text-xs text-gray-400 italic">
-                            Vendu par : <?= "xxx" ?>
+                            Vendu par : <?= $book->getUser()->getNickname(); ?>
                         </span>
                     </div>
                 </article>
@@ -65,10 +65,10 @@
             </div>
 
             <div class="flex justify-center mt-14">
-                <button
+                <a href="/?action=livres"
                     class="w-full lg:w-auto bg-[#00AC66] hover:bg-[#00995b] transition text-white px-10 py-4 rounded-lg font-medium">
                     Voir tous les livres
-                </button>
+                </a>
             </div>
 
         </div>
@@ -112,10 +112,10 @@
             </div>
 
             <div class="flex justify-center mt-14">
-                <button
+                <a href="/?action=livres"
                     class="w-full lg:w-auto border border-[#00AC66] text-[#00AC66] hover:bg-[#00AC66] hover:text-white transition px-10 py-4 rounded-lg font-medium">
                     Voir tous les livres
-                </button>
+                </a>
             </div>
 
         </div>
