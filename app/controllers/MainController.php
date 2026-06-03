@@ -12,8 +12,8 @@ class MainController
         $books = $bookManager->getBooksForHome();
         // print_r($books);
 
-        $view = new View("Tom Troc");
-        $view->render("home", [
+        $view = new View("Partage et découvertes littéraires");
+        $view->render("main/home", [
             "books" => $books,
         ]);
     }
@@ -28,7 +28,7 @@ class MainController
         $books = $bookManager->getAllBooks();
 
         $view = new View("Nos livres à l'échange");
-        $view->render("books", [
+        $view->render("main/books", [
             "books" => $books,
         ]);
     }
@@ -46,11 +46,11 @@ class MainController
         $book = $bookManager->getBookById($id);
 
         if (!$book) {
-            throw new Exception("Le ivre demandé n'existe pas.", 404);
+            throw new Exception("Le livre demandé n'existe pas.", 404);
         }
 
         $view = new View($book->getTitle());
-        $view->render("book", [
+        $view->render("main/book", [
             'book' => $book,
         ]);
     }

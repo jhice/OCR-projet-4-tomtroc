@@ -23,8 +23,8 @@ class UserController
         $books = $bookManager->getAllBooksFromUser($user);
         // print_r($books);
 
-        $view = new View($user->getNickname());
-        $view->render("user", [
+        $view = new View("Profil de " . $user->getNickname());
+        $view->render("user/user", [
             "user" => $user,
             "books" => $books,
         ]);

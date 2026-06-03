@@ -118,7 +118,7 @@ INSERT INTO books (title, comment, author, available, photo, user_id) VALUES
     'Innovation',
     'Essai sur les mécanismes de l’innovation et les idées disruptives.',
     'Matt Ridley',
-    TRUE,
+    FALSE,
     'innovation.webp',
     1
 ),

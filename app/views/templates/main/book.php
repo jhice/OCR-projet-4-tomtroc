@@ -14,8 +14,10 @@
         <div>
             <img
                 src="/assets/images/covers/<?= $book->getPhoto(); ?>"
+                fetchpriority="high"
                 alt="<?= $book->getTitle(); ?>"
-                class="w-full aaaspect-5/6 object-cover">
+                class="w-full aaaspect-5/6 object-cover"
+                width="375" height="538">
         </div>
 
         <!-- CONTENT -->

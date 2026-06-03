@@ -35,7 +35,7 @@ class AdminController
     {
         // On vérifie que l'utilisateur est connecté.
         if (!isset($_SESSION['user'])) {
-            Utils::redirect("connectionForm");
+            Utils::redirect("login");
         }
     }
 
@@ -45,7 +45,7 @@ class AdminController
      */
     public function displayRegisterForm(): void
     {
-        $view = new View("Inscription");
+        $view = new View("Inscription utilisateur");
         $view->render("user/registration_form");
     }
     
@@ -93,7 +93,7 @@ class AdminController
      */
     public function displayConnectionForm(): void
     {
-        $view = new View("Connexion");
+        $view = new View("Connexion utilisateur");
         $view->render("user/login_form");
     }
 
