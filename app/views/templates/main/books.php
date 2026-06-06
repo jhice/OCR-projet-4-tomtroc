@@ -1,7 +1,6 @@
   <!-- PAGE -->
-  <main class="py-10 lg:py-16">
+  <main class="container-custom mx-auto px-4 lg:px-8 py-10 lg:py-16">
 
-      <div class="container-custom mx-auto px-4 lg:px-8">
 
           <!-- TITLE -->
           <div class="mb-8 lg:mb-12">
@@ -12,7 +11,7 @@
 
               <!-- SEARCH -->
               <!-- <div class="relative max-w-xl"> -->
-              <div class="relative">
+              <div class="relative w-full lg:w-96">
 
                   <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +73,5 @@
               <?php endforeach; ?>
 
           </section>
-
-      </div>
 
   </main>

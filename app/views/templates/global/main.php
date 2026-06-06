@@ -8,7 +8,8 @@
  *      $content string : le contenu de la page. 
  */
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -37,37 +38,38 @@
 
             <div class="flex items-center justify-between h-20">
 
-                <!-- LOGO -->
+                <!-- DESKTOP LEFT -->
                 <div class="flex items-center gap-4">
+                    <!-- LOGO -->
                     <div
                         class="w-12 h-12 rounded-md bg-[#00AC66] flex items-center justify-center text-white font-semibold text-xl">
                         TT
                     </div>
-
+                    <!-- SITE TITLE -->
                     <span class="text-[#00AC66] text-2xl font-display">
                         Tom Troc
                     </span>
 
-                    <!-- DESKTOP NAV -->
-                    <nav class="hidden lg:flex items-center gap-10 ml-16 mt-2 text-sm">
+                    <!-- DESKTOP NAV LEFT -->
+                    <nav aria-label="desktop-public-navigation" class="hidden lg:flex items-center gap-10 ml-16 mt-2 text-sm">
                         <a href="./" class="hover:text-[#00AC66] transition">Accueil</a>
                         <a href="./?action=livres" class="hover:text-[#00AC66] transition">Nos livres à l’échange</a>
                     </nav>
                 </div>
 
-                <!-- DESKTOP RIGHT -->
-                <div class="hidden lg:flex items-center gap-10 mt-2 text-sm">
+                <!-- DESKTOP NAV RIGHT -->
+                <nav aria-label="desktop-user-navigation" class="hidden lg:flex items-center gap-10 mt-2 text-sm">
                     <?php if (isset($_SESSION['user'])): ?>
-                    <a href="#">Messagerie</a>
-                    <a href="/?action=user&id=<?= $_SESSION["idUser"]; ?>">Mon compte</a>
-                    <a href="/?action=logout">Déconnexion</a>
+                        <a href="#">Messagerie</a>
+                        <a href="/?action=user&id=<?= $_SESSION["idUser"]; ?>">Mon compte</a>
+                        <a href="/?action=logout">Déconnexion</a>
                     <?php else : ?>
-                    <a href="/?action=login">Connexion</a>
-                    <a href="/?action=register">Inscription</a>
+                        <a href="/?action=login">Connexion</a>
+                        <a href="/?action=register">Inscription</a>
                     <?php endif; ?>
-                </div>
+                </nav>
 
-                <!-- MOBILE BURGER -->
+                <!-- MOBILE BURGER MENU -->
                 <button id="burger-btn" class="lg:hidden flex flex-col gap-1.5 z-50" aria-label="Ouvrir le menu">
                     <span class="w-6 h-[2px] bg-black transition-all duration-300"></span>
                     <span class="w-6 h-[2px] bg-black transition-all duration-300"></span>
@@ -81,27 +83,21 @@
                 class="lg:hidden absolute top-full left-0 w-full bg-[#F5F3EF] border-t border-black/5 hidden shadow-sm">
 
                 <nav class="flex flex-col px-5 py-6 text-base">
-
                     <a href="./" class="pb-4 border-b border-black/5">
                         Accueil
                     </a>
-
                     <a href="./?action=livres" class="py-4 border-b border-black/5">
                         Nos livres à l’échange
                     </a>
-
                     <a href="#" class="py-4 border-b border-black/5">
                         Messagerie
                     </a>
-
                     <a href="#" class="py-4 border-b border-black/5">
                         Mon compte
                     </a>
-
                     <a href="./?action=login" class="pt-4">
                         Connexion
                     </a>
-
                 </nav>
 
             </div>
@@ -114,24 +110,16 @@
     <!-- FOOTER -->
     <footer class="bg-white border-t border-black/5 py-5">
         <div class="container-custom mx-auto px-5 lg:px-8">
-
-            <div class="">
-
-                <div class="flex items-center flex-col gap-5 md:flex-row md:gap-10 md:justify-end text-sm text-gray-500">
-                    <a href="#">Politique de confidentialité</a>
-                    <a href="#">Mentions légales</a>
-                    <a href="#">Tom Troc©</a>
-                    <div class="text-[#00AC66] font-semibold text-xl">
-                        TT
-                    </div>
+            <nav aria-label="footer-navigation" class="flex items-center flex-col gap-5 md:flex-row md:gap-10 md:justify-end text-sm text-gray-500">
+                <a href="#">Politique de confidentialité</a>
+                <a href="#">Mentions légales</a>
+                <a href="#">Tom Troc©</a>
+                <div class="text-[#00AC66] font-semibold text-xl">
+                    TT
                 </div>
-
-
-            </div>
-
+            </nav>
         </div>
     </footer>
 
 </body>
-
 </html>
