@@ -15,18 +15,18 @@ try {
         // pages publiques
 
         case 'home':
-            $articleController = new MainController();
-            $articleController->showHome();
+            $mainController = new MainController();
+            $mainController->home();
             break;
 
         case 'livres':
-            $articleController = new MainController();
-            $articleController->showBooks();
+            $bookController = new BookController();
+            $bookController->list();
             break;
 
         case 'livre':
-            $articleController = new MainController();
-            $articleController->showBook();
+            $bookController = new BookController();
+            $bookController->show();
             break;
 
         case 'user':
@@ -61,6 +61,13 @@ try {
             $adminController->disconnectUser();
             break;
 
+        // conversation
+
+        case 'messages':
+            $conversationController = new ConversationController();
+            $conversationController->show();
+            break;
+            
         default:
             throw new Exception("La page demandée n'existe pas.", 404);
     }
