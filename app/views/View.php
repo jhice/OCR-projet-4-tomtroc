@@ -9,7 +9,11 @@ class View
      * Le titre de la page.
      */
     private string $title;
-    
+
+    /**
+     * Nombre de messages non lus
+     */
+    private int $unreadMessages;
     
     /**
      * Constructeur. 
@@ -17,6 +21,7 @@ class View
     public function __construct($title) 
     {
         $this->title = $title;
+        $this->unreadMessages = Utils::getUnreadMessages();
     }
     
     /**
@@ -33,6 +38,7 @@ class View
         // Les deux variables ci-dessous sont utilisées dans le "main.php" qui est le template principal.
         $content = $this->_renderViewFromTemplate($viewPath, $params);
         $title = $this->title;
+        $unreadMessages = $this->unreadMessages;
 
         // On définit les en-têtes de réponse avant envoi
         if (isset($params['errorCode'])) {

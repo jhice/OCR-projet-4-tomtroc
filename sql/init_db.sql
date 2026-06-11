@@ -21,7 +21,8 @@ INSERT INTO users (login, password, nickname, avatar) VALUES
 -- pwd : juju1432
 ('juju1432',        '$2y$10$KGjiwO9BKJ.r9Q5lerL.p.Nuc2R95dR9kEDwwAAEbCPQ5kZWUsqeu', 'Juju1432',        'juju.jpg'),
 ('christiane75014', '$2y$demo$005', 'Christiane75014', 'christiane.jpg'),
-('hamzalecture',    '$2y$demo$006', 'Hamzalecture',    'hamza.jpg'),
+-- pwd : hamza
+('hamzalecture',    '$2y$10$ApG0.jOIgAlxkELueLtYgOjCR0N4xoaEOxtLYftS6QKV6K849JiC6', 'Hamzalecture',    'hamza.jpg'),
 ('louben50',        '$2y$demo$007', 'LouBen50',        'louben.jpg'),
 ('lolobzh',         '$2y$demo$008', 'Lolobzh',         'lolobzh.jpg'),
 ('sas634',          '$2y$demo$009', 'Sas634',          'sas634.jpg'),

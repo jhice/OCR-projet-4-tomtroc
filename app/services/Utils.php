@@ -73,4 +73,19 @@ class Utils
     {
         return $_REQUEST[$variableName] ?? $defaultValue;
     }
+
+    /**
+     * Va cherche le nombre de messages non lus
+     */
+    public static function getUnreadMessages(): int
+    {
+        if (!isset($_SESSION["idUser"])) {
+            return 0;
+        }
+        
+        $converstationManager = new ConversationManager;
+        $unread = $converstationManager->getUnreadMessages();
+
+        return $unread;
+    }
 }

@@ -63,9 +63,19 @@ try {
 
         // conversation
 
+        case 'inbox':
+            $conversationController = new ConversationController();
+            $conversationController->inbox();
+            break;
+            
         case 'messages':
             $conversationController = new ConversationController();
             $conversationController->show();
+            break;
+            
+        case 'write':
+            $conversationController = new ConversationController();
+            $conversationController->write();
             break;
             
         default:

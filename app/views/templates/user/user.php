@@ -5,7 +5,7 @@
         class="w-20 h-20 rounded-full object-cover"
         alt="">
 
-    <p><?= $user->getNickname(); ?></p>
+    <p><?= $user->getNickname(); ?> (id:<?= $user->getId(); ?>)</p>
     <p>Membre depuis 1 an</p>
     <p>Bibiliothèque</p>
     <p>[ICON] <?= count($books) ?> livre(s)</p>

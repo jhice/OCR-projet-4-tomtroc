@@ -60,7 +60,7 @@
                 <!-- DESKTOP NAV RIGHT -->
                 <nav aria-label="desktop-user-navigation" class="hidden lg:flex items-center gap-10 mt-2 text-sm">
                     <?php if (isset($_SESSION['user'])): ?>
-                        <a href="#">Messagerie</a>
+                        <a href="/?action=inbox">Messagerie (<?= $unreadMessages ?>)</a>
                         <a href="/?action=user&id=<?= $_SESSION["idUser"]; ?>">Mon compte</a>
                         <a href="/?action=logout">Déconnexion</a>
                     <?php else : ?>
