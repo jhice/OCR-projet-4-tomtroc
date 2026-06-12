@@ -12,7 +12,7 @@ class BookManager extends AbstractEntityManager
      */
     public function getBooksForHome(): array
     {
-        $sql = "SELECT * FROM books ORDER BY id ASC LIMIT 4";
+        $sql = "SELECT * FROM books ORDER BY id DESC LIMIT 4";
         $result = $this->db->query($sql);
         $books = [];
 
@@ -43,7 +43,7 @@ class BookManager extends AbstractEntityManager
      */
     public function getAllBooks(): array
     {
-        $sql = "SELECT * FROM books ORDER BY id ASC";
+        $sql = "SELECT * FROM books ORDER BY id DESC";
         $result = $this->db->query($sql);
         $books = [];
 
@@ -119,7 +119,7 @@ class BookManager extends AbstractEntityManager
      * @param Book $book : l'book à ajouter ou modifier.
      * @return void
      */
-    public function addOrUpdateBook(Book $book): void
+    public function save(Book $book): void
     {
         if ($book->getId() == -1) {
             $this->addBook($book);
@@ -135,11 +135,14 @@ class BookManager extends AbstractEntityManager
      */
     public function addBook(Book $book): void
     {
-        $sql = "INSERT INTO books (id_user, title, content, date_creation) VALUES (:id_user, :title, :content, NOW())";
+        $sql = "INSERT INTO books (title, comment, author, available, photo, user_id) VALUES (:title, :comment, :author, :available, :photo, :user_id)";
         $this->db->query($sql, [
-            'id_user' => $book->getIdUser(),
             'title' => $book->getTitle(),
-            'content' => $book->getContent()
+            'comment' => $book->getComment(),
+            'author' => $book->getAuthor(),
+            'available' => (int) $book->getAvailable(),
+            'photo' => $book->getPhoto(),
+            'user_id' => $book->getUserId(),
         ]);
     }
 
@@ -150,10 +153,13 @@ class BookManager extends AbstractEntityManager
      */
     public function updateBook(Book $book): void
     {
-        $sql = "UPDATE books SET title = :title, content = :content, date_update = NOW() WHERE id = :id";
+        $sql = "UPDATE books SET title = :title, comment = :comment, author = :author, available = :available, photo = :photo WHERE id = :id";
         $this->db->query($sql, [
             'title' => $book->getTitle(),
-            'content' => $book->getContent(),
+            'comment' => $book->getComment(),
+            'author' => $book->getAuthor(),
+            'available' => (int) $book->getAvailable(),
+            'photo' => $book->getPhoto(),
             'id' => $book->getId()
         ]);
     }

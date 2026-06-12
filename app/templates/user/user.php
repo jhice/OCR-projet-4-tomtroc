@@ -6,13 +6,17 @@
         alt="">
 
     <p><?= $user->getNickname(); ?> (id:<?= $user->getId(); ?>)</p>
-    <p>Membre depuis 1 an</p>
+    <p>Membre depuis <?= Utils::getUserRegistrationTime($user->getCreatedAt()->format('Y-m-d')) ?></p>
     <p>Bibiliothèque</p>
     <p>[ICON] <?= count($books) ?> livre(s)</p>
+    <?php // on ne peut pas écrire de message à soi-même ?>
+    <?php if ( !Utils::isConnectedUser($user->getId()) ): ?>
     <a href="/?action=messages&id1=<?= $_SESSION["idUser"] ?? 0; ?>&id2=<?= $user->getId(); ?>">Écrire un message</a>
-
+    <?php endif; ?>
         <p>Livres</p>
-
+        <?php if ( Utils::isConnectedUser($user->getId()) ): ?>
+        <a href="/?action=book_add">Ajouter un livre</a>
+        <?php endif; ?>
         <?php if (count($books)): ?>
             <table class="bg-white border-separate border-spacing-8 border-gray-400 dark:border-gray-500 mb-20">
                 <thead>
@@ -22,7 +26,9 @@
                         <th class="text-left">Auteur</th>
                         <!-- <th class="text-left">Description</th> -->
                         <th class="text-left">Disponibilité</th>
+                        <?php if ( Utils::isConnectedUser($user->getId()) ): ?>
                         <th class="text-left">Action</th>
+                        <?php endif; ?>
                     </tr>
                 <tbody>
                     <?php foreach ($books as $book): ?>
@@ -46,10 +52,12 @@
                                 <?php endif; ?>
 
                             </td>
+                            <?php if ( Utils::isConnectedUser($user->getId()) ): ?>
                             <td>
-                                <a class="underline" href="/action=book_edit&id=<?= $book->getId(); ?>">Éditer</a>
-                                <a class="underline text-[#CB2D2D]" href="/action=book_delete&id=<?= $book->getId(); ?>">Supprimer</a>
+                                <a class="underline" href="/?action=book_edit&id=<?= $book->getId(); ?>">Éditer</a>
+                                <a class="underline text-[#CB2D2D]" href="/?action=book_delete&id=<?= $book->getId(); ?>" <?= Utils::askConfirmation("Supprimer le livre {$book->getTitle()} ?") ?>>Supprimer</a>
                             </td>
+                            <?php endif; ?>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

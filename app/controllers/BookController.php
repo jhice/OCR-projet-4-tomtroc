@@ -16,7 +16,7 @@ class BookController extends AbstractController
         $books = $bookManager->getAllBooks();
 
         $view = new View("Nos livres à l'échange");
-        $view->render("main/books", [
+        $view->render("book/books", [
             "books" => $books,
         ]);
     }
@@ -38,8 +38,203 @@ class BookController extends AbstractController
         }
 
         $view = new View($book->getTitle());
-        $view->render("main/book", [
+        $view->render("book/book", [
             'book' => $book,
+        ]);
+    }
+
+    /**
+     * Formulaire d'ajout de livre
+     */
+    public function add()
+    {
+        // l'utilisateur doit être connecté
+        $this->checkIfUserIsConnected();
+
+        $book = new Book();
+
+        // POST ?
+        if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+
+            // vérification des champs
+            // print_r($_POST);
+            $title = Utils::request("title");
+            $author = Utils::request("author");
+            $comment = Utils::request("comment");
+            $available = (bool) Utils::request("available");
+            var_dump($available);
+
+            if (!$title || !$author || !$comment || $available === null) {
+                throw new Exception("Tous les champs sont requis.", 422);
+            }
+
+            // photo
+            // @see https://www.phptutorial.net/php-tutorial/php-file-upload/
+            $has_file = isset($_FILES['photo']);
+            if ($has_file) {
+                $filename = $_FILES['photo']['name'];
+                $tmp = $_FILES['photo']['tmp_name'];
+                // new file location
+                $filepath = UPLOAD_DIR . '/' . $filename;
+                // move the file to the upload dir
+                $success = move_uploaded_file($tmp, $filepath);
+                // photo data
+                $book->setPhoto($filename);
+            }
+
+            // mise à jour du livre
+            $book->setTitle($title);
+            $book->setAuthor($author);
+            $book->setComment($comment);
+            $book->setAvailable($available);
+            // user
+            $book->setUserId($_SESSION["idUser"]);
+            // print_r($book);
+            // return;
+
+            // mise à jour BDD
+            $bookManager = new BookManager();
+            $bookManager->save($book);
+
+            // on redirige vers le compte
+            Utils::redirect("user", [
+                "id" => $_SESSION["idUser"],
+            ]);
+        }
+
+        // rendu de la vue
+        $view = new View("Ajout livre ");
+        $view->render("book/add", [
+            'book' => $book,
+        ]);
+    }
+
+    /**
+     * Formulaire de modification de livre
+     */
+    public function edit()
+    {
+        // l'utilisateur doit être connecté
+        $this->checkIfUserIsConnected();
+
+        // on récupère l'id du livre
+        $id = (int) Utils::request("id");
+
+        // le livre doit exister
+        $bookManager = new BookManager();
+        $book = $bookManager->getBookById($id);
+
+        if (!$book) {
+            throw new Exception("Le livre demandé n'existe pas.", 404);
+        }
+
+        // le livre doit appartenir à l'utilisateur
+        if ($book->getUser()->getId() !== $_SESSION["idUser"]) {
+            throw new Exception("Vous n'avez pas la permission de supprimer ce livre.", 403);
+        }
+
+        // rendu de la vue
+        $view = new View("Edition " . $book->getTitle());
+        $view->render("book/edit", [
+            'book' => $book,
+        ]);
+    }
+
+    /**
+     * Met à jour un livre
+     */
+    public function update()
+    {
+        // l'utilisateur doit être connecté
+        $this->checkIfUserIsConnected();
+
+        // on récupère l'id du livre
+        $id = (int) Utils::request("id");
+
+        // le livre doit exister
+        $bookManager = new BookManager();
+        $book = $bookManager->getBookById($id);
+
+        if (!$book) {
+            throw new Exception("Le livre demandé n'existe pas.", 404);
+        }
+
+        // le livre doit appartenir à l'utilisateur
+        if ($book->getUser()->getId() !== $_SESSION["idUser"]) {
+            throw new Exception("Vous n'avez pas la permission de supprimer ce livre.", 403);
+        }
+
+        // photo
+        // @see https://www.phptutorial.net/php-tutorial/php-file-upload/
+        $has_file = isset($_FILES['photo']);
+        if ($has_file) {
+            $filename = $_FILES['photo']['name'];
+            $tmp = $_FILES['photo']['tmp_name'];
+            // new file location
+            $filepath = UPLOAD_DIR . '/' . $filename;
+            // move the file to the upload dir
+            $success = move_uploaded_file($tmp, $filepath);
+            // photo data
+            $book->setPhoto($filename);
+        }
+
+        // vérification des champs
+        // print_r($_POST);
+        $title = Utils::request("title");
+        $author = Utils::request("author");
+        $comment = Utils::request("comment");
+        $available = (bool) Utils::request("available");
+        // var_dump($available);
+
+        if (!$title || !$author || !$comment || $available === null) {
+            throw new Exception("Tous les champs sont requis.", 422);
+        }
+
+        // mise à jour du livre
+        $book->setTitle($title);
+        $book->setAuthor($author);
+        $book->setComment($comment);
+        $book->setAvailable($available);
+
+        // mise à jour BDD
+        $bookManager->save($book);
+
+        // on redirige vers le compte
+        Utils::redirect("user", [
+            "id" => $_SESSION["idUser"],
+        ]);
+    }
+
+    /**
+     * Supprime un livre
+     */
+    public function delete()
+    {
+        // l'utilisateur doit être connecté
+        $this->checkIfUserIsConnected();
+
+        // on récupère l'id du livre
+        $id = (int) Utils::request("id");
+
+        // le livre doit exister
+        $bookManager = new BookManager();
+        $book = $bookManager->getBookById($id);
+
+        if (!$book) {
+            throw new Exception("Le livre demandé n'existe pas.", 404);
+        }
+
+        // le livre doit appartenir à l'utilisateur
+        if ($book->getUser()->getId() !== $_SESSION["idUser"]) {
+            throw new Exception("Vous n'avez pas la permission de supprimer ce livre.", 403);
+        }
+
+        // on supprime
+        $bookManager->deleteBook($id);
+
+        // on redirige vers le compte
+        Utils::redirect("user", [
+            "id" => $_SESSION["idUser"],
         ]);
     }
 }

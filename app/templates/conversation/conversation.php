@@ -1,4 +1,4 @@
-<main class="container mx-auto min-h-[calc(100vh-80px)] bg-[#F5F3EF]">
+<main class="container mx-auto bg-[#F5F3EF]">
 
     <div class="lg:flex">
 

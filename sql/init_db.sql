@@ -7,30 +7,31 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    login VARCHAR(255) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     nickname VARCHAR(255) NOT NULL,
-    avatar VARCHAR(255)
+    avatar VARCHAR(255),
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO users (login, password, nickname, avatar) VALUES
-('camilleclublit',  '$2y$demo$001', 'CamilleClubLit',  'camille.jpg'),
+INSERT INTO users (email, password, nickname, avatar, created_at) VALUES
+('camilleclublit@reef.fr', '$2y$demo$001', 'CamilleClubLit', 'camille.jpg', '2023-05-20 09:15:00'),
 -- pwd : alexlecture
-('alexlecture',     '$2y$10$si2KOtOxbRUdzU76j1JMwunFe4wiQngQ/hVRvO2F.twNDpG8xtu7O', 'Alexlecture',     'alex.jpg'),
-('hugo1990_12',     '$2y$demo$003', 'Hugo1990.12',     'hugo.jpg'),
+('alexlecture@reef.fr', '$2y$10$si2KOtOxbRUdzU76j1JMwunFe4wiQngQ/hVRvO2F.twNDpG8xtu7O', 'Alexlecture', 'alex.jpg', '2023-05-20 09:15:00'),
+('hugo1990_12@reef.fr', '$2y$demo$003', 'Hugo1990.12', 'hugo.jpg', '2024-05-20 09:15:00'),
 -- pwd : juju1432
-('juju1432',        '$2y$10$KGjiwO9BKJ.r9Q5lerL.p.Nuc2R95dR9kEDwwAAEbCPQ5kZWUsqeu', 'Juju1432',        'juju.jpg'),
-('christiane75014', '$2y$demo$005', 'Christiane75014', 'christiane.jpg'),
+('juju1432@reef.fr', '$2y$10$KGjiwO9BKJ.r9Q5lerL.p.Nuc2R95dR9kEDwwAAEbCPQ5kZWUsqeu', 'Juju1432', 'juju.jpg', '2024-05-20 09:15:00'),
+('christiane75014@reef.fr', '$2y$demo$005', 'Christiane75014', 'christiane.jpg', '2024-05-20 09:15:00'),
 -- pwd : hamza
-('hamzalecture',    '$2y$10$ApG0.jOIgAlxkELueLtYgOjCR0N4xoaEOxtLYftS6QKV6K849JiC6', 'Hamzalecture',    'hamza.jpg'),
-('louben50',        '$2y$demo$007', 'LouBen50',        'louben.jpg'),
-('lolobzh',         '$2y$demo$008', 'Lolobzh',         'lolobzh.jpg'),
-('sas634',          '$2y$demo$009', 'Sas634',          'sas634.jpg'),
-('ml95',            '$2y$demo$010', 'ML95',            'ml95.jpg'),
-('vergo933',        '$2y$demo$011', 'Vergo933',        'vergo933.jpg'),
-('anikabrabms',     '$2y$demo$012', 'AnikaBrabms',     'anika.jpg'),
-('victoriefabr912', '$2y$demo$013', 'VictorieFabr912', 'victorie.jpg'),
-('lofranclub67',    '$2y$demo$014', 'Lofranclub67',    'lofran.jpg');
+('hamzalecture@reef.fr', '$2y$10$ApG0.jOIgAlxkELueLtYgOjCR0N4xoaEOxtLYftS6QKV6K849JiC6', 'Hamzalecture', 'hamza.jpg', '2024-05-20 09:15:00'),
+('louben50@reef.fr', '$2y$demo$007', 'LouBen50', 'louben.jpg', '2025-05-20 09:15:00'),
+('lolobzh@reef.fr', '$2y$demo$008', 'Lolobzh', 'lolobzh.jpg', '2025-05-20 09:15:00'),
+('sas634@reef.fr', '$2y$demo$009', 'Sas634', 'sas634.jpg', '2025-05-20 09:15:00'),
+('ml95@reef.fr', '$2y$demo$010', 'ML95', 'ml95.jpg', '2025-05-20 09:15:00'),
+('vergo933@reef.fr', '$2y$demo$011', 'Vergo933', 'vergo933.jpg', '2026-04-20 09:15:00'),
+('anikabrabms@reef.fr', '$2y$demo$012', 'AnikaBrabms', 'anika.jpg', '2026-05-01 09:15:00'),
+('victoriefabr912@reef.fr', '$2y$demo$013', 'VictorieFabr912', 'victorie.jpg', '2026-05-15 09:15:00'),
+('lofranclub67@reef.fr', '$2y$demo$014', 'Lofranclub67', 'lofran.jpg', '2026-05-20 09:15:00');
 
 -- =====================================================
 -- Création de la table : books

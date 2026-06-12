@@ -8,8 +8,8 @@
     private string $title = "";
     private string $author = "";
     private string $comment = "";
-    private bool $available;
-    private string $photo = "";
+    private bool $available = true;
+    private ?string $photo = "";
     private int $userId;
     // permet d'associer l'objet directement (voir BookManager)
     private User $user;
@@ -115,8 +115,12 @@
      *
      * @return string
      */
-    public function getPhoto(): string
+    public function getPhoto(): ?string
     {
+        if (empty($this->photo)) {
+            return "_default.jpg";
+        }
+        
         return $this->photo;
     }
 
@@ -127,7 +131,7 @@
      *
      * @return self
      */
-    public function setPhoto(string $photo): self
+    public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
 

@@ -72,10 +72,10 @@
             </div>
 
             <!-- CTA -->
-            <button
-                class="w-full bg-[#00AC66] hover:bg-[#00995b] transition text-white px-10 py-4 rounded-lg font-medium">
-                Envoyer un message
-            </button>
+            <?php // on ne peut pas écrire de message à soi-même ?>
+            <?php if (isset($_SESSION["idUser"]) && $_SESSION["idUser"] !== $book->getUser()->getId()): ?>
+            <a href="/?action=messages&id1=<?= $_SESSION["idUser"] ?? 0; ?>&id2=<?= $book->getUser()->getId(); ?>" class="w-full block text-center bg-[#00AC66] hover:bg-[#00995b] transition text-white px-10 py-4 rounded-lg font-medium">Envoyer un message</a>
+            <?php endif; ?>
 
         </div>
 

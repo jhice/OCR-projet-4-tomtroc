@@ -7,14 +7,14 @@
 class UserManager extends AbstractEntityManager
 {
     /**
-     * Récupère un user par son login.
-     * @param string $login
+     * Récupère un user par son email.
+     * @param string $email
      * @return ?User
      */
-    public function getUserByLogin(string $login) : ?User 
+    public function getUserByEmail(string $email) : ?User 
     {
-        $sql = "SELECT * FROM users WHERE login = :login";
-        $result = $this->db->query($sql, ['login' => $login]);
+        $sql = "SELECT * FROM users WHERE email = :email";
+        $result = $this->db->query($sql, ['email' => $email]);
         $user = $result->fetch();
         if ($user) {
             return new User($user);
@@ -78,9 +78,9 @@ class UserManager extends AbstractEntityManager
      */
     public function addUser(User $user): void
     {
-        $sql = "INSERT INTO users (login, password, nickname) VALUES (:login, :password, :nickname)";
+        $sql = "INSERT INTO users (email, password, nickname) VALUES (:email, :password, :nickname)";
         $this->db->query($sql, [
-            'login' => $user->getLogin(),
+            'email' => $user->getEmail(),
             'password' => $user->getPassword(),
             'nickname' => $user->getNickname(),
         ]);
@@ -95,7 +95,7 @@ class UserManager extends AbstractEntityManager
     {
         $sql = "UPDATE users SET title = :title, content = :content, WHERE id = :id";
         $this->db->query($sql, [
-            'login' => $user->getLogin(),
+            'email' => $user->getEmail(),
             'password' => $user->getPassword(),
             'nickname' => $user->getNickname(),
         ]);

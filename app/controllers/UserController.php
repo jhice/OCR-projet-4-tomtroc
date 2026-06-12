@@ -23,19 +23,25 @@ class UserController extends AbstractController
     public function registerUser(): void
     {
         // On récupère les données du formulaire.
-        $login = Utils::request("login");
+        $nickname = Utils::request("nickname");
+        $email = Utils::request("email");
         $password = Utils::request("password");
 
-        // On vérifie que les données sont valides.
-        if (empty($login) || empty($password)) {
+        // On vérifie que les données sont renseignées.
+        if (empty($nickname) || empty($email) || empty($password)) {
             throw new Exception("Tous les champs sont obligatoires.");
         }
 
-        // On vérifie que l'utilisateur n'existe pas déjà
+        // le format d'e-mail doit être valide
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new Exception("L'adresse e-mail n'est pas au bon format.");
+        }
+
+        // On vérifie que l'e-mail n'existe pas déjà
         $userManager = new UserManager();
-        $user = $userManager->getUserByLogin($login);
+        $user = $userManager->getUserByEmail($email);
         if ($user) {
-            throw new Exception("Ce nom d'utilisateur est déjà utilisé.");
+            throw new Exception("Cette adresse e-mail est déjà utilisée.");
         }
 
         // On hache le mot de passe avec l'algorithme bcrypt, pour stockage sécurisé en BDD
@@ -43,9 +49,9 @@ class UserController extends AbstractController
 
         // On enregistre l'utilisateur
         $user = new User([
-            "login" => $login,
+            "email" => $email,
             "password" => $hashedPassword,
-            "nickname" => $login,
+            "nickname" => $nickname,
             "avatar" => "",
         ]);
         $userManager->addUser($user);
@@ -71,25 +77,25 @@ class UserController extends AbstractController
     public function connectUser(): void
     {
         // On récupère les données du formulaire.
-        $login = Utils::request("login");
+        $email = Utils::request("email");
         $password = Utils::request("password");
 
         // On vérifie que les données sont valides.
-        if (empty($login) || empty($password)) {
+        if (empty($email) || empty($password)) {
             throw new Exception("Tous les champs sont obligatoires.");
         }
 
         // On vérifie que l'utilisateur existe.
         $userManager = new UserManager();
-        $user = $userManager->getUserByLogin($login);
+        $user = $userManager->getUserByEmail($email);
         if (!$user) {
-            throw new Exception("Nom d'utilisateur ou mot de passe erroné.");
+            throw new Exception("Adresse e-mail ou mot de passe erroné.");
         }
 
         // On vérifie que le mot de passe est correct.
         if (!password_verify($password, $user->getPassword())) {
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            throw new Exception("Nom d'utilisateur ou mot de passe erroné.");
+            throw new Exception("Adresse e-mail ou mot de passe erroné.");
         }
 
         // On connecte l'utilisateur.

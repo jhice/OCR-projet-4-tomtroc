@@ -19,3 +19,7 @@ body {
 #mobile-menu {
     z-index: 1;
 }
+
+button {
+    cursor: pointer;
+}

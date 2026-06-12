@@ -75,17 +75,54 @@ class Utils
     }
 
     /**
-     * Va cherche le nombre de messages non lus
+     * Va chercher le nombre de messages non lus
      */
     public static function getUnreadMessages(): int
     {
         if (!isset($_SESSION["idUser"])) {
             return 0;
         }
-        
+
         $converstationManager = new ConversationManager;
         $unread = $converstationManager->getUnreadMessages();
 
         return $unread;
+    }
+
+    /**
+     * Durée d'inscription d'un utilisateur (page profil)
+     */
+    public static function getUserRegistrationTime(string $date)
+    {
+        // @see https://www.php.net/manual/en/datetime.diff.php
+        $origin = new DateTimeImmutable();
+        $target = new DateTimeImmutable($date);
+        $interval = $origin->diff($target);
+        // return $interval->format('%a days %m months %Y years');
+        $years = (int) $interval->format('%Y');
+        if ($years < 1) {
+            $days = (int) $interval->format('%a');
+            if ($days === 0) {
+                $period = "aujourd'hui";
+            } elseif ($days === 1) {
+                $period = "1 jour";
+            } else {
+                $period = "$days jours";
+            }
+        } elseif ($years === 1) {
+            $period = "1 an";
+        } else {
+            $period = "$years ans";
+        }
+
+        return $period;
+    }
+
+    /**
+     * Vérifie si le user connecté est le user fourni
+     */
+    public static function isConnectedUser(int $userId)
+    {
+        return isset($_SESSION["idUser"]) && $_SESSION["idUser"] === $userId;
     }
 }

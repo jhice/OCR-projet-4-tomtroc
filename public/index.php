@@ -60,6 +60,33 @@ try {
             $userController = new UserController();
             $userController->disconnectUser();
             break;
+        
+        // user book
+
+        case 'book_add':
+            $bookController = new BookController();
+            $bookController->add();
+            break;
+
+        case 'book_add_post':
+            $bookController = new BookController();
+            $bookController->add();
+            break;
+        
+        case 'book_edit':
+            $bookController = new BookController();
+            $bookController->edit();
+            break;
+
+        case 'book_edit_post':
+            $bookController = new BookController();
+            $bookController->update();
+            break;
+
+        case 'book_delete':
+            $bookController = new BookController();
+            $bookController->delete();
+            break;
 
         // conversations
 

@@ -5,31 +5,32 @@
  */
  class User extends AbstractEntity 
  {
-    private string $login = "";
+    private string $email = "";
     private string $password = "";
     private string $nickname = "";
     private ?string $avatar = "";
+    private DateTime $createdAt;
 
     /**
-     * Get the value of login
+     * Get the value of email
      *
      * @return string
      */
-    public function getLogin(): string
+    public function getEmail(): string
     {
-        return $this->login;
+        return $this->email;
     }
 
     /**
-     * Set the value of login
+     * Set the value of email
      *
-     * @param string $login
+     * @param string $email
      *
      * @return self
      */
-    public function setLogin(string $login): self
+    public function setEmail(string $email): self
     {
-        $this->login = $login;
+        $this->email = $email;
 
         return $this;
     }
@@ -102,6 +103,34 @@
     public function setAvatar(?string $avatar): self
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of createdAt
+     *
+     * @return DateTime
+     */
+    public function getCreatedAt(): DateTime
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set the value of createdAt
+     *
+     * @param DateTime $createdAt
+     *
+     * @return self
+     */
+    public function setCreatedAt(string|DateTime $createdAt, string $format = 'Y-m-d H:i:s'): self
+    {
+        if (is_string($createdAt)) {
+            $createdAt = DateTime::createFromFormat($format, $createdAt);
+        }
+
+        $this->createdAt = $createdAt;
 
         return $this;
     }
