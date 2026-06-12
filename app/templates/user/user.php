@@ -9,7 +9,7 @@
     <p>Membre depuis 1 an</p>
     <p>Bibiliothèque</p>
     <p>[ICON] <?= count($books) ?> livre(s)</p>
-    <a href="/?action=messages&id1=<?= $_SESSION["idUser"]; ?>&id2=<?= $user->getId(); ?>">Écrire un message</a>
+    <a href="/?action=messages&id1=<?= $_SESSION["idUser"] ?? 0; ?>&id2=<?= $user->getId(); ?>">Écrire un message</a>
 
         <p>Livres</p>
 

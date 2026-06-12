@@ -32,4 +32,19 @@ spl_autoload_register(function ($className) {
     if (file_exists('../app/views/' . $className . '.php')) {
         require_once '../app/views/' . $className . '.php';
     }
+
+    // On va voir dans le dossier framework si la classe existe.
+    if (file_exists('../framework/controllers/' . $className . '.php')) {
+        require_once '../framework/controllers/' . $className . '.php';
+    }
+
+    // On va voir dans le dossier framework si la classe existe.
+    if (file_exists('../framework/views/' . $className . '.php')) {
+        require_once '../framework/views/' . $className . '.php';
+    }
+
+    // On va voir dans le dossier framework si la classe existe.
+    if (file_exists('../framework/models/' . $className . '.php')) {
+        require_once '../framework/models/' . $className . '.php';
+    }
 });

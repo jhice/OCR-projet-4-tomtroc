@@ -1,7 +1,7 @@
 <?php
 
 require_once '../app/config/config.php';
-require_once '../app/config/autoload.php';
+require_once '../framework/config/autoload.php';
 
 // On récupère l'action demandée par l'utilisateur.
 // Si aucune action n'est demandée, on affiche la page d'accueil.

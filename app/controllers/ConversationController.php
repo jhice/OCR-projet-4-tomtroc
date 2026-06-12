@@ -1,12 +1,14 @@
 <?php
 
-class ConversationController
+class ConversationController extends AbstractController
 {
     /**
      * Décide de quoi faire pour la boîte de réception
      */
     public function inbox()
     {
+        $this->checkIfUserIsConnected();
+
         // toutes les conversations du user connecté (panneau de gauche)
         $conversationManager = new ConversationManager();
         $userConversations = $conversationManager->getConversationCount($_SESSION["idUser"]);
@@ -33,6 +35,8 @@ class ConversationController
      */
     public function show(): void
     {
+        $this->checkIfUserIsConnected();
+
         // Récupération de l'id du user demandé.
         $id1 = Utils::request("id1", "");
         $id2 = Utils::request("id2", "");
@@ -94,6 +98,8 @@ class ConversationController
      */
     public function write()
     {
+        $this->checkIfUserIsConnected();
+        
         // id de la conversation
         $conversationId = Utils::request("conversation-id", null);
         // id du recipient
