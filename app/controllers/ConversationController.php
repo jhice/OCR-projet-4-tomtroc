@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Gère conversations et messages
+ */
+
 class ConversationController extends AbstractController
 {
     /**
@@ -99,7 +103,7 @@ class ConversationController extends AbstractController
     public function write()
     {
         $this->checkIfUserIsConnected();
-        
+
         // id de la conversation
         $conversationId = Utils::request("conversation-id", null);
         // id du recipient

@@ -1,6 +1,10 @@
 <?php
 
-class BookController
+/**
+ * Tout ce qui touche aux livres
+ */
+
+class BookController extends AbstractController
 {
     /**
      * Affiche "nos livres à l'échange".

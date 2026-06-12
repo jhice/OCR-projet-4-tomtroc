@@ -12,7 +12,7 @@ try {
     // Pour chaque action, on appelle le bon contrôleur et la bonne méthode.
     switch ($action) {
 
-        // pages publiques
+        // pages publiques et livres
 
         case 'home':
             $mainController = new MainController();
@@ -29,55 +29,57 @@ try {
             $bookController->show();
             break;
 
+        // utilisateurs
+
         case 'user':
             $userController = new UserController();
             $userController->showUser();
             break;
 
-        // user
-
         case 'register':
-            $adminController = new AdminController();
-            $adminController->displayRegisterForm();
+            $userController = new UserController();
+            $userController->displayRegisterForm();
             break;
-            
+
         case 'register_post':
-            $adminController = new AdminController();
-            $adminController->registerUser();
+            $userController = new UserController();
+            $userController->registerUser();
             break;
 
         case 'login':
-            $adminController = new AdminController();
-            $adminController->displayConnectionForm();
+            $userController = new UserController();
+            $userController->displayConnectionForm();
             break;
 
         case 'connect':
-            $adminController = new AdminController();
-            $adminController->connectUser();
+            $userController = new UserController();
+            $userController->connectUser();
             break;
 
         case 'logout':
-            $adminController = new AdminController();
-            $adminController->disconnectUser();
+            $userController = new UserController();
+            $userController->disconnectUser();
             break;
 
-        // conversation
+        // conversations
 
         case 'inbox':
             $conversationController = new ConversationController();
             $conversationController->inbox();
             break;
-            
+
         case 'messages':
             $conversationController = new ConversationController();
             $conversationController->show();
             break;
-            
+
         case 'write':
             $conversationController = new ConversationController();
             $conversationController->write();
             break;
-            
+
+        // 404
+
         default:
             throw new Exception("La page demandée n'existe pas.", 404);
     }
@@ -86,6 +88,7 @@ try {
     $errorView = new View('Erreur');
     $errorView->render('global/error_page', [
         'errorMessage' => $e->getMessage(),
+        // Le code transmis peut être utilisé pour le statut HTTP de réponse
         'errorCode' => $e->getCode()
     ]);
 }

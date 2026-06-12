@@ -1,6 +1,10 @@
 <?php
 
-class MainController
+/**
+ * Gère la page d'accueil et les pages statiques
+ */
+
+class MainController extends AbstractController
 {
     /**
      * Affiche la page d'accueil.
