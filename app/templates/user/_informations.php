@@ -1,6 +1,6 @@
 <?php if (Utils::isConnectedUser($user->getId())): ?>
     <!-- Infos -->
-    <div class="bg-white rounded-3xl p-8">
+    <form class="bg-white rounded-3xl p-8" action="/?action=user_update" method="post">
 
         <h2 class="font-semibold mb-8">
             Vos informations personnelles
@@ -45,5 +45,6 @@
             Enregistrer
         </button>
 
-    </div>
+</form>
+
 <?php endif; ?>

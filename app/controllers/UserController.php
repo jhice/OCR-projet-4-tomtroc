@@ -61,6 +61,52 @@ class UserController extends AbstractController
     }
 
     /**
+     * Mise à jour de l'utilisateur.
+     * @return void
+     */
+    public function update(): void
+    {
+        // On récupère les données du formulaire.
+        $nickname = Utils::request("nickname");
+        $email = Utils::request("email");
+        $password = Utils::request("password");
+        
+        // On vérifie que les données sont renseignées.
+        if (empty($nickname) || empty($email)) {
+            throw new Exception("Tous les champs sont obligatoires.");
+        }
+
+        // le format d'e-mail doit être valide
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new Exception("L'adresse e-mail n'est pas au bon format.");
+        }
+
+        // On vérifie que l'e-mail n'existe pas déjà, sauf celle du user connecté
+        $userManager = new UserManager();
+        $user = $userManager->getUserByEmail($email);
+        if ($user && $email !== $_SESSION["user"]->getEmail()) {
+            throw new Exception("Cette adresse e-mail est déjà utilisée.");
+        }
+
+        // On hache le mot de passe avec l'algorithme bcrypt, pour stockage sécurisé en BDD
+        // Si mote de passe saisi seulement
+        if ($password) {
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+            $_SESSION["user"]->setPassword($hashedPassword);
+        }
+
+        // Champs obligatoires
+        $_SESSION["user"]->setEmail($email);
+        $_SESSION["user"]->setNickname($nickname);
+
+        // On met à jour l'utilisateur
+        $userManager->updateUser($_SESSION["user"]);
+
+        // On redirige vers la page d'administration.
+        Utils::redirect("user", ['id' => $_SESSION["idUser"]]);
+    }
+
+    /**
      * Affichage du formulaire de connexion.
      * @return void
      */
@@ -140,13 +186,6 @@ class UserController extends AbstractController
         $bookManager = new BookManager();
         $books = $bookManager->getAllBooksFromUser($user);
         // print_r($books);
-
-        // est-ce le compte du user connecté ?
-        if (Utils::isConnectedUser($id)) {
-            $template = "user/private_profile";
-        } else {
-            $template = "user/public_profile";
-        }
 
         $view = new View("Profil de " . $user->getNickname());
         // template selon état du user

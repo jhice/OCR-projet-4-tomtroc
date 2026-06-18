@@ -31,7 +31,7 @@
                             </span>
                         </div>
                         <p class="text-gray-400 text-sm truncate">
-                            <?= $userConversation->content; ?> ...
+                            <?= mb_substr($userConversation->content, 0, 25); ?>...
                         </p>
                     </div>
                 </a>

@@ -46,6 +46,11 @@ try {
             $userController->register();
             break;
 
+        case 'user_update':
+            $userController = new UserController();
+            $userController->update();
+            break;
+
         case 'login':
             $userController = new UserController();
             $userController->displayConnectionForm();
