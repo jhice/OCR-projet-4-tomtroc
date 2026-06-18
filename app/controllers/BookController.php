@@ -62,7 +62,7 @@ class BookController extends AbstractController
             $author = Utils::request("author");
             $comment = Utils::request("comment");
             $available = (bool) Utils::request("available");
-            var_dump($available);
+            // var_dump($available);
 
             if (!$title || !$author || !$comment || $available === null) {
                 throw new Exception("Tous les champs sont requis.", 422);

@@ -16,6 +16,7 @@
 
             </div>
 
+            <?php if (isset($_SESSION["idUser"])): ?>
             <!-- Infos -->
             <div class="bg-white rounded-3xl p-8">
 
@@ -27,21 +28,22 @@
 
                     <div>
                         <label class="text-sm text-gray-400">
-                            Adresse email
+                            Adresse e-mail
                         </label>
 
-                        <input
+                        <input type="email" name="email" id="email"
+                            value="<?= $_SESSION["user"]->getEmail(); ?>"
                             class="w-full h-14 mt-2 bg-[#EEF2F5] rounded-md px-4">
                     </div>
 
                     <div>
                         <label class="text-sm text-gray-400">
-                            Mot de passe
+                            Mot de passe <i>(optionnel)</i>
                         </label>
 
-                        <input
+                        <input type="password" name="password" id="password"
                             class="w-full h-14 mt-2 bg-[#EEF2F5] rounded-md px-4"
-                            value="********">
+                            value="">
                     </div>
 
                     <div>
@@ -49,7 +51,8 @@
                             Pseudo
                         </label>
 
-                        <input
+                        <input type="text" name="nickname" id="nickname"
+                            value="<?= $_SESSION["user"]->getNickname(); ?>"
                             class="w-full h-14 mt-2 bg-[#EEF2F5] rounded-md px-4">
                     </div>
 
@@ -61,21 +64,15 @@
                 </button>
 
             </div>
+            <?php endif; ?>
 
         </div>
 
     </div>
 
-
-
-    <?php if (Utils::isConnectedUser($user->getId())): ?>
-        <p><a href="/?action=book_add">Ajouter un livre</a></p>
-    <?php endif; ?>
-
-
     <?php if (count($books)): ?>
         <!-- livres desktop -->
-        <div class="bg-white rounded-3xl overflow-hidden mt-8 hidden lg:block">
+        <div class="bg-white rounded-3xl overflow-hidden hidden lg:block mt-6">
 
             <table class="w-full">
 
@@ -83,13 +80,13 @@
 
                     <tr class="border-b border-black/5">
 
-                        <th class="p-5 text-left">Photo</th>
-                        <th class="p-5 text-left">Titre</th>
-                        <th class="p-5 text-left">Auteur</th>
-                        <th class="p-5 text-left">Description</th>
-                        <th class="p-5 text-left">Disponibilité</th>
+                        <th class="p-5 text-left uppercase">Photo</th>
+                        <th class="p-5 text-left uppercase">Titre</th>
+                        <th class="p-5 text-left uppercase">Auteur</th>
+                        <th class="p-5 text-left uppercase">Description</th>
+                        <th class="p-5 text-center uppercase">Disponibilité</th>
                         <?php if (Utils::isConnectedUser($user->getId())): ?>
-                            <th class="p-5 text-left">Action</th>
+                            <th class="p-5 text-left uppercase">Action</th>
                         <?php endif; ?>
 
                     </tr>
@@ -116,7 +113,7 @@
                                 <?= mb_substr($book->getComment(), 0, 50); ?>...
                             </td>
 
-                            <td class="p-5">
+                            <td class="p-5 text-center">
 
                                 <?php if (!$book->getAvailable()): ?>
                                     <span class="bg-[#F26B4A] text-white text-xs px-2 py-1 rounded-full">
@@ -152,7 +149,7 @@
         </div>
 
         <!-- livres cartes mobile -->
-        <div class="space-y-4 lg:hidden">
+        <div class="space-y-4 lg:hidden mt-6">
 
             <?php foreach ($books as $book): ?>
                 <article
@@ -214,5 +211,11 @@
     <?php else: ?>
         <p>Cet utilisateur n'a pas de livre à échanger pour le moment.</p>
     <?php endif; ?>
+
+    <?php if (Utils::isConnectedUser($user->getId())): ?>
+        <p class="py-4"><a href="/?action=book_add" class="inline-block text-center w-auto lg:w-auto bg-[#00AC66] hover:bg-[#00995b] transition text-white px-10 py-4 rounded-lg font-medium">Ajouter un livre</a></p>
+    <?php endif; ?>
+
+
 
 </main>
