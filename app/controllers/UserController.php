@@ -20,7 +20,7 @@ class UserController extends AbstractController
      * Inscription de l'utilisateur.
      * @return void
      */
-    public function registerUser(): void
+    public function register(): void
     {
         // On récupère les données du formulaire.
         $nickname = Utils::request("nickname");
@@ -74,7 +74,7 @@ class UserController extends AbstractController
      * Connexion de l'utilisateur.
      * @return void
      */
-    public function connectUser(): void
+    public function connect(): void
     {
         // On récupère les données du formulaire.
         $email = Utils::request("email");
@@ -110,7 +110,7 @@ class UserController extends AbstractController
      * Déconnexion de l'utilisateur.
      * @return void
      */
-    public function disconnectUser(): void
+    public function disconnect(): void
     {
         // On déconnecte l'utilisateur.
         unset($_SESSION['user']);
@@ -124,7 +124,7 @@ class UserController extends AbstractController
      * Affiche le compte public d'un auteur.
      * @return void
      */
-    public function showUser(): void
+    public function show(): void
     {
         // Récupération de l'id du user demandé.
         $id = Utils::request("id", -1);
@@ -141,7 +141,15 @@ class UserController extends AbstractController
         $books = $bookManager->getAllBooksFromUser($user);
         // print_r($books);
 
+        // est-ce le compte du user connecté ?
+        if (Utils::isConnectedUser($id)) {
+            $template = "user/private_profile";
+        } else {
+            $template = "user/public_profile";
+        }
+
         $view = new View("Profil de " . $user->getNickname());
+        // template selon état du user
         $view->render("user/user", [
             "user" => $user,
             "books" => $books,

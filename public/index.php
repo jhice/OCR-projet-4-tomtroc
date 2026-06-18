@@ -33,7 +33,7 @@ try {
 
         case 'user':
             $userController = new UserController();
-            $userController->showUser();
+            $userController->show();
             break;
 
         case 'register':
@@ -43,7 +43,7 @@ try {
 
         case 'register_post':
             $userController = new UserController();
-            $userController->registerUser();
+            $userController->register();
             break;
 
         case 'login':
@@ -53,12 +53,12 @@ try {
 
         case 'connect':
             $userController = new UserController();
-            $userController->connectUser();
+            $userController->connect();
             break;
 
         case 'logout':
             $userController = new UserController();
-            $userController->disconnectUser();
+            $userController->disconnect();
             break;
         
         // user book

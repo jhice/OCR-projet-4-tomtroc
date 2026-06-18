@@ -1,4 +1,5 @@
-<div class="bg-white rounded-3xl p-8 text-center">
+<!-- Profil -->
+<div class="bg-white rounded-3xl p-16 text-center">
 
     <img
         src="https://api.dicebear.com/10.x/notionists/svg?backgroundColor=ffbe47&backgroundColorFill=solid&seed=<?= $user->getAvatar(); ?>"
@@ -13,7 +14,7 @@
     <hr class="my-8 border-black/5">
 
     <h2 class="font-display text-3xl">
-        <?= $user->getNickname(); ?> (id:<?= $user->getId(); ?>)
+        <?= $user->getNickname(); ?>
     </h2>
 
     <p class="text-gray-400 mt-2">
