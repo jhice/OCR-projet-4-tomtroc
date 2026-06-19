@@ -12,8 +12,11 @@ class BookController extends AbstractController
      */
     public function list(): void
     {
+        $search = Utils::request("search", "");
+
         $bookManager = new BookManager();
-        $books = $bookManager->getAllBooks();
+        // on transmet la recherche éventuelle au manager
+        $books = $bookManager->getAllBooks($search);
 
         $view = new View("Nos livres à l'échange");
         $view->render("book/books", [

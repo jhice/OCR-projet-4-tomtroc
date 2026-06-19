@@ -1,41 +1,42 @@
   <!-- PAGE -->
   <main class="container-custom mx-auto px-4 lg:px-8 py-10 lg:py-16">
 
+      <!-- TITLE -->
+      <div class="mb-8 lg:mb-12 flex flex-col lg:flex-row lg:justify-between">
 
-          <!-- TITLE -->
-          <div class="mb-8 lg:mb-12">
+          <h1 class="font-display text-3xl lg:text-4xl leading-none mb-8">
+              Nos livres à l’échange
+          </h1>
 
-              <h1 class="font-display text-3xl lg:text-4xl leading-none mb-8">
-                  Nos livres à l’échange
-              </h1>
+          <!-- SEARCH -->
+          <!-- on renvoie le form vers la même page pour filtrer la liste -->
+          <form class="relative w-full lg:w-96" action="/" method="get">
 
-              <!-- SEARCH -->
-              <!-- <div class="relative max-w-xl"> -->
-              <div class="relative w-full lg:w-96">
+              <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5 absolute left-4 top-4 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
 
-                  <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor">
-                      <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
+              <input type="hidden" name="action" value="livres">
+              <input
+                  type="text" name="search" id="search" value="<?= $_GET["search"] ?? ""; ?>"
+                  placeholder="Rechercher un livre"
+                  class="w-full h-13 rounded-xl border border-black/5 bg-white pl-12 pr-4 outline-none focus:ring-2 focus:ring-[#00AC66]/20" />
 
-                  <input
-                      type="text"
-                      placeholder="Rechercher un livre"
-                      class="w-full h-14 rounded-xl border border-black/5 bg-white pl-12 pr-4 outline-none focus:ring-2 focus:ring-[#00AC66]/20" />
+          </form>
 
-              </div>
+      </div>
 
-          </div>
-
-          <!-- BOOKS GRID -->
+      <!-- BOOKS GRID -->
+      <?php if (count($books)): ?>
           <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
 
               <?php foreach ($books as $book): ?>
@@ -73,5 +74,9 @@
               <?php endforeach; ?>
 
           </section>
+      <?php else: ?>
+          <p>Aucun livre ne correspond à votre recherche.</p>
+          <p class="mt-4 text-[#555] underline"><a href="/?action=livres">Tous les livres</a></p>
+      <?php endif; ?>
 
   </main>
