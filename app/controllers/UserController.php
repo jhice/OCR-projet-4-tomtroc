@@ -66,6 +66,8 @@ class UserController extends AbstractController
      */
     public function update(): void
     {
+        $this->checkIfUserIsConnected();
+
         // On récupère les données du formulaire.
         $nickname = Utils::request("nickname");
         $email = Utils::request("email");
@@ -100,9 +102,10 @@ class UserController extends AbstractController
         $_SESSION["user"]->setNickname($nickname);
 
         // On met à jour l'utilisateur
+        // (l'utilisateur mis à jour est celui qui est en session, pas moyen de modifier l'id pour tenter un hack)
         $userManager->updateUser($_SESSION["user"]);
 
-        // On redirige vers la page d'administration.
+        // On redirige vers le compte.
         Utils::redirect("user", ['id' => $_SESSION["idUser"]]);
     }
 
@@ -167,7 +170,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * Affiche le compte public d'un auteur.
+     * Affiche le compte d'un auteur.
      * @return void
      */
     public function show(): void

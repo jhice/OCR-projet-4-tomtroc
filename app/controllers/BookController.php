@@ -71,20 +71,6 @@ class BookController extends AbstractController
                 throw new Exception("Tous les champs sont requis.", 422);
             }
 
-            // photo
-            // @see https://www.phptutorial.net/php-tutorial/php-file-upload/
-            $has_file = isset($_FILES['photo']);
-            if ($has_file) {
-                $filename = $_FILES['photo']['name'];
-                $tmp = $_FILES['photo']['tmp_name'];
-                // new file location
-                $filepath = UPLOAD_DIR . '/' . $filename;
-                // move the file to the upload dir
-                $success = move_uploaded_file($tmp, $filepath);
-                // photo data
-                $book->setPhoto($filename);
-            }
-
             // mise à jour du livre
             $book->setTitle($title);
             $book->setAuthor($author);
@@ -93,7 +79,7 @@ class BookController extends AbstractController
             // user
             $book->setUserId($_SESSION["idUser"]);
             // print_r($book);
-            // return;
+            $this->uploadCover($book);
 
             // mise à jour BDD
             $bookManager = new BookManager();
@@ -117,6 +103,7 @@ class BookController extends AbstractController
      */
     public function edit()
     {
+        // echo $_GET["action"];
         // l'utilisateur doit être connecté
         $this->checkIfUserIsConnected();
 
@@ -134,6 +121,37 @@ class BookController extends AbstractController
         // le livre doit appartenir à l'utilisateur
         if ($book->getUser()->getId() !== $_SESSION["idUser"]) {
             throw new Exception("Vous n'avez pas la permission de supprimer ce livre.", 403);
+        }
+
+        // POST ?
+        if ($_SERVER["REQUEST_METHOD"] === 'POST') {
+            // vérification des champs
+            // print_r($_POST);
+            $title = Utils::request("title");
+            $author = Utils::request("author");
+            $comment = Utils::request("comment");
+            $available = (bool) Utils::request("available");
+            // var_dump($available);
+
+            if (!$title || !$author || !$comment || $available === null) {
+                throw new Exception("Tous les champs sont requis.", 422);
+            }
+
+            // mise à jour du livre
+            $book->setTitle($title);
+            $book->setAuthor($author);
+            $book->setComment($comment);
+            $book->setAvailable($available);
+            // photo
+            $this->uploadCover($book);
+
+            // mise à jour BDD
+            $bookManager->save($book);
+
+            // on redirige vers le compte
+            Utils::redirect("user", [
+                "id" => $_SESSION["idUser"],
+            ]);
         }
 
         // rendu de la vue
@@ -144,33 +162,14 @@ class BookController extends AbstractController
     }
 
     /**
-     * Met à jour un livre
+     * Upload book cover
      */
-    public function update()
+    private function uploadCover(Book $book)
     {
-        // l'utilisateur doit être connecté
-        $this->checkIfUserIsConnected();
-
-        // on récupère l'id du livre
-        $id = (int) Utils::request("id");
-
-        // le livre doit exister
-        $bookManager = new BookManager();
-        $book = $bookManager->getBookById($id);
-
-        if (!$book) {
-            throw new Exception("Le livre demandé n'existe pas.", 404);
-        }
-
-        // le livre doit appartenir à l'utilisateur
-        if ($book->getUser()->getId() !== $_SESSION["idUser"]) {
-            throw new Exception("Vous n'avez pas la permission de supprimer ce livre.", 403);
-        }
-
         // photo
         // @see https://www.phptutorial.net/php-tutorial/php-file-upload/
         $has_file = isset($_FILES['photo']);
-        if ($has_file) {
+        if ($has_file && $_FILES['photo']['name'] !== "") {
             $filename = $_FILES['photo']['name'];
             $tmp = $_FILES['photo']['tmp_name'];
             // new file location
@@ -180,32 +179,6 @@ class BookController extends AbstractController
             // photo data
             $book->setPhoto($filename);
         }
-
-        // vérification des champs
-        // print_r($_POST);
-        $title = Utils::request("title");
-        $author = Utils::request("author");
-        $comment = Utils::request("comment");
-        $available = (bool) Utils::request("available");
-        // var_dump($available);
-
-        if (!$title || !$author || !$comment || $available === null) {
-            throw new Exception("Tous les champs sont requis.", 422);
-        }
-
-        // mise à jour du livre
-        $book->setTitle($title);
-        $book->setAuthor($author);
-        $book->setComment($comment);
-        $book->setAvailable($available);
-
-        // mise à jour BDD
-        $bookManager->save($book);
-
-        // on redirige vers le compte
-        Utils::redirect("user", [
-            "id" => $_SESSION["idUser"],
-        ]);
     }
 
     /**

@@ -94,7 +94,7 @@ class UserManager extends AbstractEntityManager
      */
     public function updateUser(User $user): void
     {
-        print_r($user);
+        // print_r($user);
         
         $sql = "UPDATE users SET
             `email` = :email,
