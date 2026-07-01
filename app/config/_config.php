@@ -11,7 +11,7 @@ define('TEMPLATE_VIEW_PATH', '../app/templates/'); // Le chemin vers les templat
 define('MAIN_VIEW_PATH', TEMPLATE_VIEW_PATH . 'global/main.php'); // Le chemin vers le template principal.
 define('UPLOAD_DIR', '../public/assets/images/covers/'); // Dossier des couvertures de livres.
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'blog_forteroche');
-define('DB_USER', 'root');
+define('DB_HOST', '');
+define('DB_NAME', '');
+define('DB_USER', '');
 define('DB_PASS', '');

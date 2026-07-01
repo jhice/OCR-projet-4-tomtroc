@@ -11,7 +11,7 @@
         </a>
 
         <!-- Titre -->
-        <h1 class="font-display text-4xl lg:text-5xl mt-4 mb-8">
+        <h1 class="font-display text-4xl lg:text-4xl mt-4 mb-8">
             Modifier les informations
         </h1>
 

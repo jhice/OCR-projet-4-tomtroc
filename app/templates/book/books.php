@@ -12,7 +12,7 @@
           <!-- on renvoie le form vers la même page pour filtrer la liste -->
           <form class="relative w-full lg:w-96" action="/" method="get">
 
-              <svg
+              <svg role="none"
                   xmlns="http://www.w3.org/2000/svg"
                   class="w-5 h-5 absolute left-4 top-4 text-gray-400"
                   fill="none"
@@ -22,14 +22,14 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z"/>
               </svg>
 
               <input type="hidden" name="action" value="livres">
               <input
                   type="text" name="search" id="search" value="<?= $_GET["search"] ?? ""; ?>"
                   placeholder="Rechercher un livre"
-                  class="w-full h-13 rounded-xl border border-black/5 bg-white pl-12 pr-4 outline-none focus:ring-2 focus:ring-[#00AC66]/20" />
+                  class="w-full h-13 rounded-xl border border-black/5 bg-white pl-12 pr-4 outline-none focus:ring-2 focus:ring-[#00AC66]/20">
 
           </form>
 
@@ -37,7 +37,7 @@
 
       <!-- BOOKS GRID -->
       <?php if (count($books)): ?>
-          <section class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
 
               <?php foreach ($books as $book): ?>
                   <!-- CARD -->
@@ -50,30 +50,29 @@
                       <?php endif; ?>
 
                       <img
-                          src="/assets/images/covers/<?= $book->getPhoto(); ?>"
+                          src="/assets/images/covers/<?= e($book->getPhoto()); ?>"
                           alt=""
-                          class="aspect-square w-full object-cover object-top" />
+                          class="aspect-square w-full object-cover object-top">
 
                       <div class="p-4 lg:p-5">
 
                           <h2 class="text-lg mb-1">
-                              <a class="underline" href="/?action=livre&id=<?= $book->getId(); ?>"><?= $book->getTitle(); ?></a>
+                              <a class="underline" href="/?action=livre&id=<?= $book->getId(); ?>"><?= e($book->getTitle()); ?></a>
                           </h2>
 
                           <p class="text-gray-400 text-sm mb-4">
-                              <?= $book->getAuthor(); ?>
+                              <?= e($book->getAuthor()); ?>
                           </p>
 
                           <p class="text-[11px] italic text-gray-300">
-                              Vendu par : <a class="underline" href="?action=user&id=<?= $book->getUser()->getId(); ?>"><?= $book->getUser()->getNickname(); ?></a>
+                              Vendu par : <a class="underline" href="?action=user&id=<?= $book->getUser()->getId(); ?>"><?= e($book->getUser()->getNickname()); ?></a>
                           </p>
 
                       </div>
 
                   </article>
               <?php endforeach; ?>
-
-          </section>
+            </div>
       <?php else: ?>
           <p>Aucun livre ne correspond à votre recherche.</p>
           <p class="mt-4 text-[#555] underline"><a href="/?action=livres">Tous les livres</a></p>

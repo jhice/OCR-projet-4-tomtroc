@@ -5,22 +5,22 @@
     <!-- PHOTO -->
     <div>
 
-        <label class="block text-sm text-gray-400 mb-3">
+        <label for="photo" class="block text-sm text-gray-400 mb-3">
             Photo
         </label>
 
         <img
-            src="/assets/images/covers/<?= $book->getPhoto(); ?>"
+            src="/assets/images/covers/<?= e($book->getPhoto()); ?>"
             alt=""
             class="w-full object-cover">
 
         <div class="flex flex-col justify-end mt-3">
 
-            <input id="upload-1" type="file" name="photo" class="w-full text-slate-600 font-medium text-sm border border-slate-200 rounded-md cursor-pointer
+            <input id="photo" type="file" name="photo" class="w-full text-slate-600 font-medium text-sm border border-slate-200 rounded-md cursor-pointer
                 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500
                 file:cursor-pointer file:border-0 file:py-2 file:px-3 file:mr-4
                 file:bg-gray-100 hover:file:bg-gray-200 file:text-slate-500
-                dark:text-slate-400 dark:border-neutral-700 dark:file:bg-neutral-800 dark:hover:file:bg-neutral-700" />
+                dark:text-slate-400 dark:border-neutral-700 dark:file:bg-neutral-800 dark:hover:file:bg-neutral-700">
 
         </div>
 
@@ -32,13 +32,13 @@
         <!-- TITRE -->
         <div class="mb-6">
 
-            <label class="block text-sm text-gray-400 mb-2">
+            <label for="title" class="block text-sm text-gray-400 mb-2">
                 Titre
             </label>
 
             <input
                 type="text" name="title" id="title"
-                value="<?= $book->getTitle(); ?>"
+                value="<?= e($book->getTitle()); ?>"
                 class="w-full h-14 bg-[#EEF2F5] rounded-md px-4 outline-none">
 
         </div>
@@ -46,13 +46,13 @@
         <!-- AUTEUR -->
         <div class="mb-6">
 
-            <label class="block text-sm text-gray-400 mb-2">
+            <label for="author" class="block text-sm text-gray-400 mb-2">
                 Auteur
             </label>
 
             <input
                 type="text" name="author" id="author"
-                value="<?= $book->getAuthor(); ?>"
+                value="<?= e($book->getAuthor()); ?>"
                 class="w-full h-14 bg-[#EEF2F5] rounded-md px-4 outline-none">
 
         </div>
@@ -60,20 +60,20 @@
         <!-- COMMENTAIRE -->
         <div class="mb-6">
 
-            <label class="block text-sm text-gray-400 mb-2">
+            <label for="comment" class="block text-sm text-gray-400 mb-2">
                 Commentaire
             </label>
 
             <textarea name="comment" id="comment"
                 rows="12"
-                class="w-full bg-[#EEF2F5] rounded-md p-4 outline-none resize-none"><?= $book->getComment(); ?></textarea>
+                class="w-full bg-[#EEF2F5] rounded-md p-4 outline-none resize-none"><?= e($book->getComment()); ?></textarea>
 
         </div>
 
         <!-- DISPONIBILITE -->
         <div class="mb-8">
 
-            <label class="block text-sm text-gray-400 mb-2">
+            <label for="available" class="block text-sm text-gray-400 mb-2">
                 Disponibilité
             </label>
 

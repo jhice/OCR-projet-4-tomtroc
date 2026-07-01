@@ -6,7 +6,7 @@
         <aside class="w-full lg:w-[320px] bg-[#F8F7F5] border-r border-black/5">
 
             <div class="p-8">
-                <h1 class="font-display text-5xl mb-10">
+                <h1 class="font-display text-4xl mb-10">
                     Messagerie
                 </h1>
             </div>
@@ -17,21 +17,21 @@
                     class="flex items-start gap-4 px-8 py-5 hover:bg-gray-50 transition">
 
                     <img
-                        src="https://api.dicebear.com/10.x/notionists/svg?backgroundColor=ffbe47&backgroundColorFill=solid&seed=<?= $userConversation->avatar; ?>"
+                        src="https://api.dicebear.com/10.x/notionists/svg?backgroundColor=ffbe47&backgroundColorFill=solid&seed=<?= e($userConversation->avatar); ?>"
                         class="w-12 h-12 rounded-full object-cover"
-                        alt="Avatar du profil de <?= $userConversation->nickname; ?>">
+                        alt="Avatar du profil de <?= e($userConversation->nickname); ?>">
 
                     <div class="flex-1">
                         <div class="flex justify-between items-center mb-1">
                             <span class="font-medium">
-                                <?= $userConversation->nickname; ?>
+                                <?= e($userConversation->nickname); ?>
                             </span>
                             <span class="text-sm text-gray-500">
                                 <?= date("H:i", strtotime($userConversation->created_at)); ?>
                             </span>
                         </div>
                         <p class="text-gray-400 text-sm truncate">
-                            <?= mb_substr($userConversation->content, 0, 25); ?>...
+                            <?= mb_substr(e($userConversation->content), 0, 25); ?>...
                         </p>
                     </div>
                 </a>
@@ -45,18 +45,18 @@
             <!-- Header -->
             <div class="px-6 lg:px-10 py-8">
 
-                <div class="flex items-center gap-4">
+                <h2 class="flex items-center gap-4">
 
                     <img
-                        src="https://api.dicebear.com/10.x/notionists/svg?backgroundColor=ffbe47&backgroundColorFill=solid&seed=<?= $recipient->getAvatar(); ?>"
+                        src="https://api.dicebear.com/10.x/notionists/svg?backgroundColor=ffbe47&backgroundColorFill=solid&seed=<?= e($recipient->getAvatar()); ?>"
                         class="w-14 h-14 rounded-full object-cover"
                         alt="">
 
                     <span class="font-semibold text-xl">
-                        <?= $recipient->getNickname(); ?>
+                        <?= e($recipient->getNickname()); ?>
                     </span>
 
-                </div>
+                </h2>
 
             </div>
 
@@ -72,7 +72,7 @@
                         <div class="max-w-xl mb-12">
                             <div class="flex items-center gap-2 mb-3">
                                 <img
-                                    src="https://api.dicebear.com/10.x/notionists/svg?backgroundColor=ffbe47&backgroundColorFill=solid&seed=<?= $recipient->getAvatar(); ?>"
+                                    src="https://api.dicebear.com/10.x/notionists/svg?backgroundColor=ffbe47&backgroundColorFill=solid&seed=<?= e($recipient->getAvatar()); ?>"
                                     class="w-6 h-6 rounded-full object-cover"
                                     alt="">
                                 <span class="text-gray-400 text-sm">
@@ -80,7 +80,7 @@
                                 </span>
                             </div>
                             <div class="bg-white rounded px-5 py-4">
-                                <?= $message->getContent(); ?>
+                                <?= e($message->getContent()); ?>
                             </div>
                         </div>
 
@@ -92,7 +92,7 @@
                                     <?= $message->getCreatedAt()->format("d.m | H:i"); ?>
                                 </div>
                                 <div class="bg-[#EEF2F5] rounded px-5 py-4">
-                                    <?= $message->getContent(); ?>
+                                    <?= e($message->getContent()); ?>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +114,7 @@
                     <input
                         type="text" name="content"
                         placeholder="Tapez votre message ici..."
-                        class="flex-1 h-14 rounded-lg bg-white px-6 outline-none border border-transparent focus:border-[#00AC66]">
+                        class="lg:flex-1 h-14 rounded-lg bg-white px-6 outline-none border border-transparent focus:border-[#00AC66]">
 
                     <button
                         type="submit"

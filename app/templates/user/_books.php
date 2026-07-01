@@ -29,16 +29,16 @@
 
                         <td class="p-5">
                             <img
-                                src="/assets/images/covers/<?= $book->getPhoto(); ?>" alt="<?= $book->getTitle(); ?>"
+                                src="/assets/images/covers/<?= e($book->getPhoto()); ?>" alt="<?= e($book->getTitle()); ?>"
                                 class="w-16 h-16 object-cover">
                         </td>
 
-                        <td class="p-5"><a class="underline" href="/?action=livre&id=<?= $book->getId(); ?>"><?= $book->getTitle(); ?></a></td>
+                        <td class="p-5"><a class="underline" href="/?action=livre&id=<?= $book->getId(); ?>"><?= e($book->getTitle()); ?></a></td>
 
-                        <td class="p-5"><?= $book->getAuthor(); ?></td>
+                        <td class="p-5"><?= e($book->getAuthor()); ?></td>
 
                         <td class="max-w-[220px] truncate p-5">
-                            <?= mb_substr($book->getComment(), 0, 50); ?>...
+                            <?= mb_substr(e($book->getComment()), 0, 50); ?>...
                         </td>
 
                         <td class="p-5 text-center">
@@ -86,17 +86,17 @@
                 <div class="flex gap-4">
 
                     <img
-                        src="/assets/images/covers/<?= $book->getPhoto(); ?>" alt="<?= $book->getTitle(); ?>"
+                        src="/assets/images/covers/<?= e($book->getPhoto()); ?>" alt="<?= e($book->getTitle()); ?>"
                         class="w-20 h-20 object-cover">
 
                     <div>
 
                         <h3>
-                            <a class="underline" href="/?action=livre&id=<?= $book->getId(); ?>"><?= $book->getTitle(); ?></a>
+                            <a class="underline" href="/?action=livre&id=<?= $book->getId(); ?>"><?= e($book->getTitle()); ?></a>
                         </h3>
 
                         <p class="text-sm text-gray-500">
-                            <?= $book->getAuthor(); ?>
+                            <?= e($book->getAuthor()); ?>
                         </p>
 
                         <?php if (!$book->getAvailable()): ?>
@@ -114,7 +114,7 @@
                 </div>
 
                 <p class="mt-4 text-sm text-gray-600 line-clamp-3">
-                    <?= mb_substr($book->getComment(), 0, 150); ?>...
+                    <?= mb_substr(e($book->getComment()), 0, 150); ?>...
                 </p>
 
                 <?php if (Utils::isConnectedUser($user->getId())): ?>

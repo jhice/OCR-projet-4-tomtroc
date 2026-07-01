@@ -13,9 +13,9 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?= $title; ?> &ndash; Tom Troc</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= e($title); ?> &ndash; Tom Troc</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- Google fonts -->
@@ -52,8 +52,8 @@
 
                     <!-- DESKTOP NAV LEFT -->
                     <nav aria-label="desktop-public-navigation" class="hidden lg:flex items-center gap-10 ml-16 mt-2 text-sm">
-                        <a href="./" class="hover:text-[#00AC66] transition">Accueil</a>
-                        <a href="./?action=livres" class="hover:text-[#00AC66] transition">Nos livres à l’échange</a>
+                        <a href="/" class="hover:text-[#00AC66] transition">Accueil</a>
+                        <a href="/?action=livres" class="hover:text-[#00AC66] transition">Nos livres à l’échange</a>
                     </nav>
                 </div>
 
@@ -82,22 +82,17 @@
             <div id="mobile-menu"
                 class="lg:hidden absolute top-full left-0 w-full bg-[#F5F3EF] border-t border-black/5 hidden shadow-sm">
 
-                <nav class="flex flex-col px-5 py-6 text-base">
-                    <a href="./" class="pb-4 border-b border-black/5">
-                        Accueil
-                    </a>
-                    <a href="./?action=livres" class="py-4 border-b border-black/5">
-                        Nos livres à l’échange
-                    </a>
-                    <a href="#" class="py-4 border-b border-black/5">
-                        Messagerie
-                    </a>
-                    <a href="#" class="py-4 border-b border-black/5">
-                        Mon compte
-                    </a>
-                    <a href="./?action=login" class="pt-4">
-                        Connexion
-                    </a>
+                <nav class="flex flex-col gap-4 px-5 py-6 text-base">
+                    <a href="/" class="">Accueil</a>
+                    <a href="./?action=livres" class="border-b border-black/5 pb-4">Nos livres à l’échange</a>
+                    <?php if (isset($_SESSION['user'])): ?>
+                        <a href="/?action=inbox" class="">Messagerie</a>
+                        <a href="/?action=user&id=<?= $_SESSION["idUser"]; ?>" class="">Mon compte</a>
+                        <a href="/?action=logout" class="border-b border-black/5 pb-4">Déconnexion</a>
+                    <?php else : ?>
+                        <a href="/?action=login" class="">Connexion</a>
+                        <a href="/?action=register" class="">Inscription</a>
+                    <?php endif; ?>
                 </nav>
 
             </div>
@@ -111,9 +106,9 @@
     <footer class="bg-white border-t border-black/5 py-5">
         <div class="container-custom mx-auto px-5 lg:px-8">
             <nav aria-label="footer-navigation" class="flex items-center flex-col gap-5 md:flex-row md:gap-10 md:justify-end text-sm text-gray-500">
-                <a href="#">Politique de confidentialité</a>
-                <a href="#">Mentions légales</a>
-                <a href="#">Tom Troc©</a>
+                <a href="/?action=policy">Politique de confidentialité</a>
+                <a href="/?action=legal">Mentions légales</a>
+                <a href="/?action=about">Tom Troc©</a>
                 <div class="text-[#00AC66] font-semibold text-xl">
                     TT
                 </div>

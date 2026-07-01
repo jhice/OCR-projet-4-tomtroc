@@ -4,7 +4,7 @@
         <!-- FORMULAIRE -->
         <div class="flex items-center justify-center px-6 py-12 lg:px-20">
             <div class="w-full max-w-md">
-                <h1 class="font-display text-5xl mb-16">Connexion</h1>
+                <h1 class="font-display text-4xl mb-16">Connexion</h1>
                 <form action="/?action=connect" method="post" class="space-y-8" novalidate>
                     <div>
                         <label for="email" class="block text-sm text-gray-400 mb-3">Adresse e-mail</label>

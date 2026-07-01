@@ -1,6 +1,7 @@
 <?php
 
 require_once '../framework/config/autoload.php';
+require_once '../framework/config/helpers.php';
 require_once '../app/config/config.php';
 
 // On récupère l'action demandée par l'utilisateur.

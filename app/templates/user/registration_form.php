@@ -4,10 +4,10 @@
         <!-- FORMULAIRE -->
         <div class="flex items-center justify-center px-6 py-12 lg:px-20">
             <div class="w-full max-w-md">
-                <h1 class="font-display text-5xl mb-16">Inscription</h1>
+                <h1 class="font-display text-4xl mb-16">Inscription</h1>
                 <form action="/?action=register_post" method="post" class="space-y-8" novalidate>
                     <div>
-                        <label class="block text-sm text-gray-400 mb-3">Pseudo</label>
+                        <label for="nickname" class="block text-sm text-gray-400 mb-3">Pseudo</label>
                         <input type="text" name="nickname" id="nickname" class="w-full h-14 rounded-md border border-black/5 bg-white px-4 outline-none focus:border-[#00AC66]">
                     </div>
                     <div>

@@ -18,7 +18,7 @@
             </div>
             <!-- IMAGE -->
             <div class="order-1 lg:order-2">
-                <img src="./assets/images/books-library-man.png" alt="Homme lisant un livre à l'entrée d'une librairie en Afrique du Nord." class="w-96 mx-auto object-cover" />
+                <img src="./assets/images/books-library-man.png" alt="Homme lisant un livre à l'entrée d'une librairie en Afrique du Nord." class="w-96 mx-auto object-cover">
                 <p class="text-gray-400 italic text-right mt-2 mr-4 lg:mr-auto">Hamza</p>
             </div>
         </div>
@@ -43,15 +43,15 @@
                             </span>
                         <?php endif; ?>
 
-                        <img src="/assets/images/covers/<?= $book->getPhoto(); ?>"
-                            class="aspect-square w-full object-cover object-top" alt="Couverture du livre <?= $book->getTitle(); ?>." />
+                        <img src="/assets/images/covers/<?= e($book->getPhoto()); ?>"
+                            class="aspect-square w-full object-cover object-top" alt="Couverture du livre <?= e($book->getTitle()); ?>.">
 
                         <div class="p-5">
-                            <h3 class="text-lg mb-1"><a class="underline" href="/?action=livre&id=<?= $book->getId(); ?>"><?= $book->getTitle(); ?></a></h3>
-                            <p class="text-sm text-gray-500 mb-4"><?= $book->getAuthor(); ?></p>
+                            <h3 class="text-lg mb-1"><a class="underline" href="/?action=livre&id=<?= $book->getId(); ?>"><?= e($book->getTitle()); ?></a></h3>
+                            <p class="text-sm text-gray-500 mb-4"><?= e($book->getAuthor()); ?></p>
 
                             <span class="text-xs text-gray-400 italic">
-                                Vendu par : <a class="underline" href="?action=user&id=<?= $book->getUser()->getId(); ?>"><?= $book->getUser()->getNickname(); ?></a>
+                                Vendu par : <a class="underline" href="?action=user&id=<?= $book->getUser()->getId(); ?>"><?= e($book->getUser()->getNickname()); ?></a>
                             </span>
                         </div>
                     </article>
@@ -109,7 +109,7 @@
 
     <div class="h-[300px] overflow-hidden">
         <!-- BANNER -->
-        <img src="./assets/images/woman-library-back-banner.png" alt="Image décorative représentant une lectrice qui cherche dans une bibliothèque." class="w-full h-full object-cover" />
+        <img src="./assets/images/woman-library-back-banner.png" alt="Image décorative représentant une lectrice qui cherche dans une bibliothèque." class="w-full h-full object-cover">
     </div>
 
     <!-- VALUES -->

@@ -3,7 +3,7 @@
     <!-- Breadcrumb desktop -->
     <div class="hidden lg:block max-w-[1280px] mx-auto px-8 py-6">
         <p class="text-xs text-gray-400">
-            <a href="./?action=livres">Nos livres</a> > <?= $book->getTitle(); ?>
+            <a href="./?action=livres">Nos livres</a> > <?= e($book->getTitle()); ?>
         </p>
     </div>
 
@@ -13,9 +13,9 @@
         <!-- IMAGE -->
         <div>
             <img
-                src="/assets/images/covers/<?= $book->getPhoto(); ?>"
+                src="/assets/images/covers/<?= e($book->getPhoto()); ?>"
                 fetchpriority="high"
-                alt="<?= $book->getTitle(); ?>"
+                alt="<?= e($book->getTitle()); ?>"
                 class="w-full aaaspect-5/6 object-cover"
                 width="375" height="538">
         </div>
@@ -25,11 +25,11 @@
 
             <!-- Title -->
             <h1 class="font-display text-4xl leading-none mb-4">
-                <?= $book->getTitle(); ?>
+                <?= e($book->getTitle()); ?>
             </h1>
 
             <p class="text-gray-400 text-md mb-7">
-                par <?= $book->getAuthor(); ?>
+                par <?= e($book->getAuthor()); ?>
             </p>
 
             <div class="w-12 h-px bg-gray-300 mb-7"></div>
@@ -43,7 +43,7 @@
 
                 <div class="space-y-8 text-md leading-relaxed text-[#333]">
 
-                    <?= $book->getComment(); ?>
+                    <?= e($book->getComment()); ?>
 
                 </div>
 
@@ -59,12 +59,12 @@
                 <div class="inline-flex items-center gap-3 bg-white rounded-full p-3 pe-5">
 
                     <img
-                        src="https://api.dicebear.com/10.x/notionists/svg?backgroundColor=ffbe47&backgroundColorFill=solid&seed=<?= $book->getUser()->getAvatar(); ?>"
+                        src="https://api.dicebear.com/10.x/notionists/svg?backgroundColor=ffbe47&backgroundColorFill=solid&seed=<?= e($book->getUser()->getAvatar()); ?>"
                         class="w-12 h-12 rounded-full object-cover"
                         alt="">
 
                     <span class="text-md text-[#333]">
-                        <a class="underline" href="?action=user&id=<?= $book->getUser()->getId(); ?>"><?= $book->getUser()->getNickname(); ?></a>
+                        <a class="underline" href="?action=user&id=<?= $book->getUser()->getId(); ?>"><?= e($book->getUser()->getNickname()); ?></a>
                     </span>
 
                 </div>

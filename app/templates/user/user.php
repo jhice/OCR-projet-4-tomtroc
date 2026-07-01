@@ -2,7 +2,7 @@
 <main class="bg-[#F5F3EF] container mx-auto px-8 py-16">
 
     <?php if (Utils::isConnectedUser($user->getId())): ?>
-        <h1 class="font-display text-5xl mb-8">
+        <h1 class="font-display text-4xl mb-8">
             Mon compte
         </h1>
     <?php endif; ?>

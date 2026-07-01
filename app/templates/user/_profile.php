@@ -2,8 +2,8 @@
 <div class="bg-white rounded-3xl p-16 text-center">
 
     <img
-        src="https://api.dicebear.com/10.x/notionists/svg?backgroundColor=ffbe47&backgroundColorFill=solid&seed=<?= $user->getAvatar(); ?>"
-        alt="Image de profil de <?= $user->getNickname(); ?>"
+        src="https://api.dicebear.com/10.x/notionists/svg?backgroundColor=ffbe47&backgroundColorFill=solid&seed=<?= e($user->getAvatar()); ?>"
+        alt="Image de profil de <?= e($user->getNickname()); ?>"
         class="w-28 h-28 rounded-full object-cover mx-auto">
 
     <!-- button
@@ -14,7 +14,7 @@
     <hr class="my-8 border-black/5">
 
     <h2 class="font-display text-3xl">
-        <?= $user->getNickname(); ?>
+        <?= e($user->getNickname()); ?>
     </h2>
 
     <p class="text-gray-400 mt-2">
@@ -39,7 +39,7 @@
     ?>
     <?php if (!Utils::isConnectedUser($user->getId())): ?>
         <a href="/?action=messages&id1=<?= $_SESSION["idUser"] ?? 0; ?>&id2=<?= $user->getId(); ?>"
-            class="inline-block mt-8 h-14 px-10 border border-[#00AC66] rounded-xl text-[#00AC66] font-semibold">
+            class="inline-block mt-8 p-5 border border-[#00AC66] rounded-xl text-[#00AC66] font-semibold">
             Écrire un message
         </a>
     <?php endif; ?>

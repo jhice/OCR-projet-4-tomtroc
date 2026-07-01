@@ -120,7 +120,7 @@ class BookController extends AbstractController
 
         // le livre doit appartenir à l'utilisateur
         if ($book->getUser()->getId() !== $_SESSION["idUser"]) {
-            throw new Exception("Vous n'avez pas la permission de supprimer ce livre.", 403);
+            throw new Exception("Vous n'avez pas la permission de modifier ce livre.", 403);
         }
 
         // POST ?
